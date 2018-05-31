@@ -39,8 +39,13 @@ proc vTcl:project:info {} {
     set site_4_0 .top37.tNo39.t0 
     set site_4_0 $site_4_0
     set site_5_0 $site_4_0.scr58
+    set site_5_0 $site_4_0.scr86
     set site_4_1 .top37.tNo39.t1 
+    set site_4_0 $site_4_1
+    set site_5_0 $site_4_0.scr84
+    set site_5_0 $site_4_0.scr85
     set site_4_2 .top37.tNo39.t2 
+    set site_4_0 $site_4_2
     set site_4_3 .top37.tNo39.t3 
     set site_4_0 $site_4_3
     set site_4_4 .top37.tNo39.t4 
@@ -75,7 +80,7 @@ proc vTclWindow.top37 {base} {
     vTcl::widgets::core::toplevel::createCmd $top -class Toplevel \
         -menu "$top.m38" -background {#d9d9d9} 
     wm focusmodel $top passive
-    wm geometry $top 1333x826+650+150
+    wm geometry $top 1333x826+415+167
     update
     # set in toplevel.wgt.
     global vTcl
@@ -225,6 +230,25 @@ proc vTclWindow.top37 {base} {
         -selectbackground #c4c4c4 \
         -selectforeground black \
         -width 10
+    vTcl::widgets::ttk::scrolledlistbox::CreateCmd $site_4_0.scr86 \
+        -background {#d9d9d9} -height 598 -highlightbackground {#d9d9d9} \
+        -highlightcolor black -width 530 
+    vTcl:DefineAlias "$site_4_0.scr86" "Scrolledlistbox4" vTcl:WidgetProc "Toplevel1" 1
+
+    $site_4_0.scr86.01 configure -background white \
+        -disabledforeground #a3a3a3 \
+        -font TkFixedFont \
+        -foreground black \
+        -height 3 \
+        -highlightbackground #d9d9d9 \
+        -highlightcolor #d9d9d9 \
+        -selectbackground #c4c4c4 \
+        -selectforeground black \
+        -width 10
+    label $site_4_0.lab87 \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -text {Selected Procedures} 
+    vTcl:DefineAlias "$site_4_0.lab87" "Label6" vTcl:WidgetProc "Toplevel1" 1
     place $site_4_0.lab41 \
         -in $site_4_0 -x 10 -y 60 -anchor nw -bordermode ignore 
     place $site_4_0.lab42 \
@@ -273,8 +297,13 @@ proc vTclWindow.top37 {base} {
         -in $site_4_0 -x 430 -y 100 -width 16 -height 31 -anchor nw \
         -bordermode inside 
     place $site_4_0.scr58 \
-        -in $site_4_0 -x 10 -y 180 -width 660 -relwidth 0 -height 518 \
+        -in $site_4_0 -x 20 -y 180 -width 660 -relwidth 0 -height 518 \
         -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_0.scr86 \
+        -in $site_4_0 -x 710 -y 100 -width 530 -relwidth 0 -height 598 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_0.lab87 \
+        -in $site_4_0 -x 710 -y 60 -anchor nw -bordermode ignore 
     frame $top.tNo39.t1 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
@@ -284,6 +313,146 @@ proc vTclWindow.top37 {base} {
         -text {Diagnosis and Results Criteria} -image {} -compound left \
         -underline -1 
     set site_4_1  $top.tNo39.t1
+    label $site_4_1.lab82 \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -text {Diagnosis Search} 
+    vTcl:DefineAlias "$site_4_1.lab82" "Label5" vTcl:WidgetProc "Toplevel1" 1
+    entry $site_4_1.ent83 \
+        -background white -disabledforeground {#a3a3a3} -font TkFixedFont \
+        -foreground {#000000} -insertbackground black 
+    vTcl:DefineAlias "$site_4_1.ent83" "Entry3" vTcl:WidgetProc "Toplevel1" 1
+    vTcl::widgets::ttk::scrolledlistbox::CreateCmd $site_4_1.scr84 \
+        -background {#d9d9d9} -height 428 -highlightbackground {#d9d9d9} \
+        -highlightcolor black -width 760 
+    vTcl:DefineAlias "$site_4_1.scr84" "Scrolledlistbox2" vTcl:WidgetProc "Toplevel1" 1
+
+    $site_4_1.scr84.01 configure -background white \
+        -disabledforeground #a3a3a3 \
+        -font TkFixedFont \
+        -foreground black \
+        -height 3 \
+        -highlightbackground #d9d9d9 \
+        -highlightcolor #d9d9d9 \
+        -selectbackground #c4c4c4 \
+        -selectforeground black \
+        -width 10
+    vTcl::widgets::ttk::scrolledlistbox::CreateCmd $site_4_1.scr85 \
+        -background {#d9d9d9} -height 578 -highlightbackground {#d9d9d9} \
+        -highlightcolor black -width 420 
+    vTcl:DefineAlias "$site_4_1.scr85" "Scrolledlistbox3" vTcl:WidgetProc "Toplevel1" 1
+
+    $site_4_1.scr85.01 configure -background white \
+        -disabledforeground #a3a3a3 \
+        -font TkFixedFont \
+        -foreground black \
+        -height 3 \
+        -highlightbackground #d9d9d9 \
+        -highlightcolor #d9d9d9 \
+        -selectbackground #c4c4c4 \
+        -selectforeground black \
+        -width 10
+    label $site_4_1.lab88 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Findings Contains} 
+    vTcl:DefineAlias "$site_4_1.lab88" "Label5_18" vTcl:WidgetProc "Toplevel1" 1
+    entry $site_4_1.ent89 \
+        -background white -disabledforeground {#a3a3a3} -font TkFixedFont \
+        -foreground {#000000} -insertbackground black 
+    vTcl:DefineAlias "$site_4_1.ent89" "Entry4" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_1.lab90 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Impression Contains} 
+    vTcl:DefineAlias "$site_4_1.lab90" "Label5_19" vTcl:WidgetProc "Toplevel1" 1
+    entry $site_4_1.ent91 \
+        -background white -disabledforeground {#a3a3a3} -font TkFixedFont \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -insertbackground black \
+        -selectbackground {#c4c4c4} -selectforeground black 
+    vTcl:DefineAlias "$site_4_1.ent91" "Entry4_20" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_1.lab92 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text Recommendation 
+    vTcl:DefineAlias "$site_4_1.lab92" "Label5_20" vTcl:WidgetProc "Toplevel1" 1
+    ttk::combobox $site_4_1.tCo93 \
+        -textvariable combobox -foreground {} -background {} -takefocus {} 
+    vTcl:DefineAlias "$site_4_1.tCo93" "TCombobox3" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_1.lab94 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Critical Results} 
+    vTcl:DefineAlias "$site_4_1.lab94" "Label5_21" vTcl:WidgetProc "Toplevel1" 1
+    ttk::style configure TCheckbutton -background #d9d9d9
+    ttk::style configure TCheckbutton -foreground #000000
+    ttk::style configure TCheckbutton -font TkDefaultFont
+    ttk::checkbutton $site_4_1.tCh95 \
+        -variable tch95 -takefocus {} -text {Category 1} 
+    vTcl:DefineAlias "$site_4_1.tCh95" "TCheckbutton1" vTcl:WidgetProc "Toplevel1" 1
+    ttk::style configure TCheckbutton -background #d9d9d9
+    ttk::style configure TCheckbutton -foreground #000000
+    ttk::style configure TCheckbutton -font TkDefaultFont
+    ttk::checkbutton $site_4_1.tCh96 \
+        -variable tch95 -takefocus {} -text {Category 2} 
+    vTcl:DefineAlias "$site_4_1.tCh96" "TCheckbutton1_22" vTcl:WidgetProc "Toplevel1" 1
+    ttk::style configure TCheckbutton -background #d9d9d9
+    ttk::style configure TCheckbutton -foreground #000000
+    ttk::style configure TCheckbutton -font TkDefaultFont
+    ttk::checkbutton $site_4_1.tCh97 \
+        -variable tch95 -takefocus {} -text {Category 3} 
+    vTcl:DefineAlias "$site_4_1.tCh97" "TCheckbutton1_23" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_1.lab98 \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -text {Selected Diagnoses} 
+    vTcl:DefineAlias "$site_4_1.lab98" "Label7" vTcl:WidgetProc "Toplevel1" 1
+    place $site_4_1.lab82 \
+        -in $site_4_1 -x 10 -y 220 -width 131 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_1.ent83 \
+        -in $site_4_1 -x 220 -y 220 -width 544 -relwidth 0 -height 26 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_1.scr84 \
+        -in $site_4_1 -x 10 -y 270 -width 760 -relwidth 0 -height 428 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_1.scr85 \
+        -in $site_4_1 -x 800 -y 110 -width 420 -relwidth 0 -height 578 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_1.lab88 \
+        -in $site_4_1 -x 10 -y 60 -width 141 -height 31 -anchor nw \
+        -bordermode inside 
+    place $site_4_1.ent89 \
+        -in $site_4_1 -x 220 -y 60 -width 544 -relwidth 0 -height 26 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_1.lab90 \
+        -in $site_4_1 -x 10 -y 100 -width 161 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_1.ent91 \
+        -in $site_4_1 -x 220 -y 100 -width 544 -height 26 -anchor nw \
+        -bordermode inside 
+    place $site_4_1.lab92 \
+        -in $site_4_1 -x 10 -y 140 -width 141 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_1.tCo93 \
+        -in $site_4_1 -x 220 -y 140 -width 542 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_1.lab94 \
+        -in $site_4_1 -x 10 -y 180 -width 111 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_1.tCh95 \
+        -in $site_4_1 -x 220 -y 180 -anchor nw -bordermode ignore 
+    place $site_4_1.tCh96 \
+        -in $site_4_1 -x 350 -y 180 -width 110 -height 31 -anchor nw \
+        -bordermode inside 
+    place $site_4_1.tCh97 \
+        -in $site_4_1 -x 480 -y 180 -width 110 -height 31 -anchor nw \
+        -bordermode inside 
+    place $site_4_1.lab98 \
+        -in $site_4_1 -x 800 -y 70 -anchor nw -bordermode ignore 
     frame $top.tNo39.t2 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
@@ -292,6 +461,144 @@ proc vTclWindow.top37 {base} {
         -padding 0 -sticky nsew -state normal -text {Patient Criteria} \
         -image {} -compound none -underline -1 
     set site_4_2  $top.tNo39.t2
+    label $site_4_2.lab64 \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -text {Age Range} 
+    vTcl:DefineAlias "$site_4_2.lab64" "Label3" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_2.lab65 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Patient Sex} 
+    vTcl:DefineAlias "$site_4_2.lab65" "Label3_9" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_2.lab66 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Smoking History} 
+    vTcl:DefineAlias "$site_4_2.lab66" "Label3_10" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_2.lab67 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Age Range} 
+    label $site_4_2.lab68 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text Ethnicity/Race 
+    vTcl:DefineAlias "$site_4_2.lab68" "Label3_10" vTcl:WidgetProc "Toplevel1" 1
+    entry $site_4_2.ent69 \
+        -background white -disabledforeground {#a3a3a3} -font TkFixedFont \
+        -foreground {#000000} -insertbackground black 
+    vTcl:DefineAlias "$site_4_2.ent69" "Entry2" vTcl:WidgetProc "Toplevel1" 1
+    entry $site_4_2.ent70 \
+        -background white -disabledforeground {#a3a3a3} -font TkFixedFont \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -insertbackground black \
+        -selectbackground {#c4c4c4} -selectforeground black 
+    vTcl:DefineAlias "$site_4_2.ent70" "Entry2_11" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_2.lab71 \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -text to 
+    vTcl:DefineAlias "$site_4_2.lab71" "Label4" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad72 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Any -variable sex_select 
+    vTcl:DefineAlias "$site_4_2.rad72" "Radiobutton1" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad73 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text F -variable sex_select 
+    vTcl:DefineAlias "$site_4_2.rad73" "Radiobutton1_12" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad75 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text M -variable sex_select 
+    vTcl:DefineAlias "$site_4_2.rad75" "Radiobutton1_13" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad76 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Other -variable sex_select 
+    vTcl:DefineAlias "$site_4_2.rad76" "Radiobutton1_14" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad77 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Any -variable {} 
+    vTcl:DefineAlias "$site_4_2.rad77" "Radiobutton2" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad78 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text {Current smoker} \
+        -variable {} 
+    vTcl:DefineAlias "$site_4_2.rad78" "Radiobutton2_15" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad79 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text {Past smoker} -variable {} 
+    vTcl:DefineAlias "$site_4_2.rad79" "Radiobutton2_16" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_2.rad80 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Never -variable {} 
+    vTcl:DefineAlias "$site_4_2.rad80" "Radiobutton2_17" vTcl:WidgetProc "Toplevel1" 1
+    ttk::combobox $site_4_2.tCo81 \
+        -textvariable combobox -foreground {} -background {} -takefocus {} 
+    vTcl:DefineAlias "$site_4_2.tCo81" "TCombobox2" vTcl:WidgetProc "Toplevel1" 1
+    place $site_4_2.lab64 \
+        -in $site_4_2 -x 10 -y 60 -anchor nw -bordermode ignore 
+    place $site_4_2.lab65 \
+        -in $site_4_2 -x 10 -y 100 -width 93 -height 31 -anchor nw \
+        -bordermode inside 
+    place $site_4_2.lab66 \
+        -in $site_4_2 -x 10 -y 140 -width 133 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_2.lab68 \
+        -in $site_4_2 -x 10 -y 180 -width 113 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_2.ent69 \
+        -in $site_4_2 -x 210 -y 60 -width 84 -relwidth 0 -height 26 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_2.ent70 \
+        -in $site_4_2 -x 350 -y 60 -width 84 -height 26 -anchor nw \
+        -bordermode inside 
+    place $site_4_2.lab71 \
+        -in $site_4_2 -x 300 -y 60 -width 47 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_2.rad72 \
+        -in $site_4_2 -x 210 -y 100 -anchor nw -bordermode ignore 
+    place $site_4_2.rad73 \
+        -in $site_4_2 -x 280 -y 100 -width 47 -height 37 -anchor nw \
+        -bordermode inside 
+    place $site_4_2.rad75 \
+        -in $site_4_2 -x 360 -y 100 -width 47 -relwidth 0 -height 37 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_2.rad76 \
+        -in $site_4_2 -x 500 -y 100 -width 67 -relwidth 0 -height 37 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_2.rad77 \
+        -in $site_4_2 -x 210 -y 140 -anchor nw -bordermode ignore 
+    place $site_4_2.rad78 \
+        -in $site_4_2 -x 490 -y 140 -width 162 -relwidth 0 -height 37 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_2.rad79 \
+        -in $site_4_2 -x 360 -y 140 -width 132 -relwidth 0 -height 37 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_2.rad80 \
+        -in $site_4_2 -x 280 -y 140 -width 82 -relwidth 0 -height 37 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_2.tCo81 \
+        -in $site_4_2 -x 210 -y 180 -width 432 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode ignore 
     frame $top.tNo39.t3 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
@@ -302,10 +609,116 @@ proc vTclWindow.top37 {base} {
     set site_4_3  $top.tNo39.t3
     label $site_4_3.lab40 \
         -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -text Label 
+        -foreground {#000000} -text {Max number of studies to retrieve} 
     vTcl:DefineAlias "$site_4_3.lab40" "Label1" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_3.lab99 \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -text {Source to retrieve from} 
+    vTcl:DefineAlias "$site_4_3.lab99" "Label8" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_3.lab100 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Get reports?} 
+    vTcl:DefineAlias "$site_4_3.lab100" "Label8_24" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_3.lab101 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -text {Only get studies that have reports?} 
+    vTcl:DefineAlias "$site_4_3.lab101" "Label8_25" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_3.lab102 \
+        -activebackground {#f9f9f9} -activeforeground black \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black \
+        -text {Create research PID to maintain PID link to patient?} 
+    vTcl:DefineAlias "$site_4_3.lab102" "Label8_26" vTcl:WidgetProc "Toplevel1" 1
+    entry $site_4_3.ent104 \
+        -background white -disabledforeground {#a3a3a3} -font TkFixedFont \
+        -foreground {#000000} -insertbackground black 
+    vTcl:DefineAlias "$site_4_3.ent104" "Entry6" vTcl:WidgetProc "Toplevel1" 1
+    spinbox $site_4_3.spi105 \
+        -activebackground {#f9f9f9} -background white \
+        -buttonbackground {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground black -from 1.0 -highlightbackground black \
+        -highlightcolor black -increment 1.0 -insertbackground black \
+        -selectbackground {#c4c4c4} -selectforeground black \
+        -textvariable spinbox -to 100.0 
+    vTcl:DefineAlias "$site_4_3.spi105" "Spinbox2" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad106 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Yes -variable get_reports 
+    vTcl:DefineAlias "$site_4_3.rad106" "Radiobutton3" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad107 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text No -variable get_reports 
+    vTcl:DefineAlias "$site_4_3.rad107" "Radiobutton3_27" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad108 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Yes \
+        -variable get_only_reports 
+    vTcl:DefineAlias "$site_4_3.rad108" "Radiobutton3_28" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad110 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text No \
+        -variable get_only_reports 
+    vTcl:DefineAlias "$site_4_3.rad110" "Radiobutton3_28" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad111 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Yes -variable research_PID 
+    vTcl:DefineAlias "$site_4_3.rad111" "Radiobutton3_29" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad112 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text No -variable research_PID 
+    vTcl:DefineAlias "$site_4_3.rad112" "Radiobutton3_30" vTcl:WidgetProc "Toplevel1" 1
     place $site_4_3.lab40 \
         -in $site_4_3 -x 30 -y 50 -anchor nw -bordermode ignore 
+    place $site_4_3.lab99 \
+        -in $site_4_3 -x 30 -y 90 -anchor nw -bordermode ignore 
+    place $site_4_3.lab100 \
+        -in $site_4_3 -x 30 -y 130 -width 99 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_3.lab101 \
+        -in $site_4_3 -x 30 -y 170 -width 279 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_3.lab102 \
+        -in $site_4_3 -x 30 -y 210 -width 409 -relwidth 0 -height 31 \
+        -relheight 0 -anchor nw -bordermode inside 
+    place $site_4_3.ent104 \
+        -in $site_4_3 -x 470 -y 90 -anchor nw -bordermode ignore 
+    place $site_4_3.spi105 \
+        -in $site_4_3 -x 470 -y 50 -width 248 -relwidth 0 -height 29 \
+        -relheight 0 -anchor nw -bordermode ignore 
+    place $site_4_3.rad106 \
+        -in $site_4_3 -x 470 -y 120 -anchor nw -bordermode ignore 
+    place $site_4_3.rad107 \
+        -in $site_4_3 -x 550 -y 120 -width 58 -height 37 -anchor nw \
+        -bordermode inside 
+    place $site_4_3.rad108 \
+        -in $site_4_3 -x 470 -y 160 -width 58 -height 37 -anchor nw \
+        -bordermode inside 
+    place $site_4_3.rad110 \
+        -in $site_4_3 -x 550 -y 160 -width 58 -height 37 -anchor nw \
+        -bordermode inside 
+    place $site_4_3.rad111 \
+        -in $site_4_3 -x 470 -y 200 -width 58 -height 37 -anchor nw \
+        -bordermode inside 
+    place $site_4_3.rad112 \
+        -in $site_4_3 -x 550 -y 200 -width 58 -height 37 -anchor nw \
+        -bordermode inside 
     frame $top.tNo39.t4 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
@@ -318,7 +731,7 @@ proc vTclWindow.top37 {base} {
     # SETTING GEOMETRY
     ###################
     place $top.tNo39 \
-        -in $top -x 50 -y 30 -width 1254 -relwidth 0 -height 756 -relheight 0 \
+        -in $top -x 40 -y 30 -width 1254 -relwidth 0 -height 756 -relheight 0 \
         -anchor nw -bordermode ignore 
 
     vTcl:FireEvent $base <<Ready>>
