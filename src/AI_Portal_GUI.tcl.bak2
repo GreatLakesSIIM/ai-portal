@@ -38,7 +38,6 @@ proc vTcl:project:info {} {
     }
     set site_4_0 .top37.tNo39.t0 
     set site_4_0 $site_4_0
-    set site_5_0 $site_4_0.scr58
     set site_4_1 .top37.tNo39.t1 
     set site_4_2 .top37.tNo39.t2 
     set site_4_3 .top37.tNo39.t3 
@@ -180,51 +179,8 @@ proc vTclWindow.top37 {base} {
         -activebackground {#f9f9f9} -activeforeground black \
         -background {#d9d9d9} -disabledforeground {#a3a3a3} \
         -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text / 
+        -highlightcolor black -text Modality 
     vTcl:DefineAlias "$site_4_0.lab52" "Label2_7" vTcl:WidgetProc "Toplevel1" 1
-    label $site_4_0.lab53 \
-        -activebackground {#f9f9f9} -activeforeground black \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text / 
-    vTcl:DefineAlias "$site_4_0.lab53" "Label2_8" vTcl:WidgetProc "Toplevel1" 1
-    label $site_4_0.lab54 \
-        -activebackground {#f9f9f9} -activeforeground black \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text / 
-    vTcl:DefineAlias "$site_4_0.lab54" "Label2_8" vTcl:WidgetProc "Toplevel1" 1
-    label $site_4_0.lab55 \
-        -activebackground {#f9f9f9} -activeforeground black \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text / 
-    vTcl:DefineAlias "$site_4_0.lab55" "Label2_8" vTcl:WidgetProc "Toplevel1" 1
-    entry $site_4_0.ent56 \
-        -background white -disabledforeground {#a3a3a3} -font TkFixedFont \
-        -foreground {#000000} -insertbackground black 
-    vTcl:DefineAlias "$site_4_0.ent56" "Entry1" vTcl:WidgetProc "Toplevel1" 1
-    label $site_4_0.lab57 \
-        -activebackground {#f9f9f9} -activeforeground black \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text to 
-    vTcl:DefineAlias "$site_4_0.lab57" "Label2_8" vTcl:WidgetProc "Toplevel1" 1
-    vTcl::widgets::ttk::scrolledlistbox::CreateCmd $site_4_0.scr58 \
-        -background {#d9d9d9} -height 518 -highlightbackground {#d9d9d9} \
-        -highlightcolor black -width 660 
-    vTcl:DefineAlias "$site_4_0.scr58" "Scrolledlistbox1" vTcl:WidgetProc "Toplevel1" 1
-
-    $site_4_0.scr58.01 configure -background white \
-        -disabledforeground #a3a3a3 \
-        -font TkFixedFont \
-        -foreground black \
-        -height 3 \
-        -highlightbackground #d9d9d9 \
-        -highlightcolor #d9d9d9 \
-        -selectbackground #c4c4c4 \
-        -selectforeground black \
-        -width 10
     place $site_4_0.lab41 \
         -in $site_4_0 -x 10 -y 60 -anchor nw -bordermode ignore 
     place $site_4_0.lab42 \
@@ -234,8 +190,7 @@ proc vTclWindow.top37 {base} {
         -in $site_4_0 -x 10 -y 140 -width 146 -relwidth 0 -height 31 \
         -relheight 0 -anchor nw -bordermode inside 
     place $site_4_0.tCo45 \
-        -in $site_4_0 -x 210 -y 60 -width 462 -relwidth 0 -height 31 \
-        -relheight 0 -anchor nw -bordermode ignore 
+        -in $site_4_0 -x 210 -y 60 -anchor nw -bordermode ignore 
     place $site_4_0.spi46 \
         -in $site_4_0 -x 210 -y 100 -width 38 -relwidth 0 -height 29 \
         -relheight 0 -anchor nw -bordermode ignore 
@@ -255,26 +210,8 @@ proc vTclWindow.top37 {base} {
         -in $site_4_0 -x 600 -y 100 -width 78 -height 29 -anchor nw \
         -bordermode inside 
     place $site_4_0.lab52 \
-        -in $site_4_0 -x 250 -y 100 -width 16 -relwidth 0 -height 31 \
-        -relheight 0 -anchor nw -bordermode inside 
-    place $site_4_0.lab53 \
-        -in $site_4_0 -x 310 -y 100 -width 16 -relwidth 0 -height 31 \
-        -relheight 0 -anchor nw -bordermode inside 
-    place $site_4_0.lab54 \
-        -in $site_4_0 -x 520 -y 100 -width 16 -height 31 -anchor nw \
+        -in $site_4_0 -x 250 -y 120 -width 76 -height 31 -anchor nw \
         -bordermode inside 
-    place $site_4_0.lab55 \
-        -in $site_4_0 -x 580 -y 100 -width 16 -height 31 -anchor nw \
-        -bordermode inside 
-    place $site_4_0.ent56 \
-        -in $site_4_0 -x 210 -y 140 -width 464 -relwidth 0 -height 26 \
-        -relheight 0 -anchor nw -bordermode ignore 
-    place $site_4_0.lab57 \
-        -in $site_4_0 -x 430 -y 100 -width 16 -height 31 -anchor nw \
-        -bordermode inside 
-    place $site_4_0.scr58 \
-        -in $site_4_0 -x 10 -y 180 -width 660 -relwidth 0 -height 518 \
-        -relheight 0 -anchor nw -bordermode ignore 
     frame $top.tNo39.t1 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
