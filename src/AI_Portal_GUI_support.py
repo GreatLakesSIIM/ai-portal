@@ -57,6 +57,14 @@ def set_Tk_var():
     sex_select3 = StringVar()
     global sex_select4
     sex_select4 = StringVar()
+    global smoke_select
+    smoke_select = StringVar()
+    global smoke_select2
+    smoke_select2 = StringVar()
+    global smoke_select3
+    smoke_select3 = StringVar()
+    global smoke_select4
+    smoke_select4 = StringVar()
     global get_reports
     get_reports = StringVar()
     global get_only_reports
