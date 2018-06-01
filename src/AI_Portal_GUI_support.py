@@ -9,46 +9,46 @@
 import sys
 
 try:
-    from Tkinter import *
+from Tkinter import *
 except ImportError:
-    from tkinter import *
+from tkinter import *
 
 try:
-    import ttk
-    py3 = False
+import ttk
+py3 = False
 except ImportError:
-    import tkinter.ttk as ttk
-    py3 = True
+import tkinter.ttk as ttk
+py3 = True
 def set_Tk_var():
-    global combobox
-    combobox = StringVar()
-    global spinbox
-    spinbox = StringVar()
-    global tch95
-    tch95 = StringVar()
-    global sex_select
-    sex_select = StringVar()
-    global get_reports
-    get_reports = StringVar()
-    global get_only_reports
-    get_only_reports = StringVar()
-    global research_PID
-    research_PID = StringVar()
+	global combobox
+	combobox = StringVar()
+	global spinbox
+	spinbox = StringVar()
+	global tch95
+	tch95 = StringVar()
+	global sex_select
+	sex_select = StringVar()
+	global get_reports
+	get_reports = StringVar()
+	global get_only_reports
+	get_only_reports = StringVar()
+	global research_PID
+	research_PID = StringVar()
 
 def init(top, gui, *args, **kwargs):
-    global w, top_level, root
-    w = gui
-    top_level = top
-    root = top
+	global w, top_level, root
+	w = gui
+	top_level = top
+	root = top
 
 def destroy_window():
-    # Function which closes the window.
-    global top_level
-    top_level.destroy()
-    top_level = None
+	# Function which closes the window.
+	global top_level
+	top_level.destroy()
+	top_level = None
 
 if __name__ == '__main__':
-    import AI_Portal_GUI
-    AI_Portal_GUI.vp_start_gui()
+	import AI_Portal_GUI
+	AI_Portal_GUI.vp_start_gui()
 
 
