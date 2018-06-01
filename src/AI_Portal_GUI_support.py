@@ -23,6 +23,8 @@ except ImportError:
 def set_Tk_var():
     global combobox
     combobox = StringVar()
+    global combobox2
+    combobox2 = StringVar()
     global spinbox
     spinbox = StringVar()
     global spinbox2
