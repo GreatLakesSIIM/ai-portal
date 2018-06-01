@@ -588,14 +588,14 @@ class New_Toplevel:
         self.TCheckbutton1_22 = ttk.Checkbutton(self.Diagnosis_tab)
         self.TCheckbutton1_22.place(relx=0.28, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-        self.TCheckbutton1_22.configure(variable=AI_Portal_GUI_support.tch95)
+        self.TCheckbutton1_22.configure(variable=AI_Portal_GUI_support.tch95_2)
         self.TCheckbutton1_22.configure(takefocus="")
         self.TCheckbutton1_22.configure(text='''Category 2''')
 
         self.TCheckbutton1_23 = ttk.Checkbutton(self.Diagnosis_tab)
         self.TCheckbutton1_23.place(relx=0.38, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-        self.TCheckbutton1_23.configure(variable=AI_Portal_GUI_support.tch95)
+        self.TCheckbutton1_23.configure(variable=AI_Portal_GUI_support.tch95_3)
         self.TCheckbutton1_23.configure(takefocus="")
         self.TCheckbutton1_23.configure(text='''Category 3''')
 
@@ -839,12 +839,16 @@ class New_Toplevel:
         self.never_smoker_button.configure(text='''Never''')
         self.never_smoker_button.configure(width=82)
 
-        self.Patient_condition_box = ttk.Combobox(self.Patient_tab)
-        self.Patient_condition_box.place(relx=0.17, rely=0.25, relheight=0.04
+        self.Patient_ethn_box = ttk.Combobox(self.Patient_tab)
+        self.Patient_ethn_box.place(relx=0.17, rely=0.25, relheight=0.04
                 , relwidth=0.35)
-        self.Patient_condition_box.configure(textvariable=AI_Portal_GUI_support.combobox)
-        self.Patient_condition_box.configure(width=432)
-        self.Patient_condition_box.configure(takefocus="")
+        self.Patient_ethn_box.configure(textvariable=AI_Portal_GUI_support.combobox3)
+        self.Patient_ethn_box.configure(width=432)
+        self.Patient_ethn_box.configure(takefocus="")
+        self.Patient_ethn_box['values'] = ('White','Black or African American',
+        'American Indian or Alaskan Native','Asian','Native Hawaiian or Pacific Islander',
+        'Two or more','Hispanic or Latino')
+
 
         self.Label1 = Label(self.Dataset_tab, anchor='w')
         self.Label1.place(relx=0.02, rely=0.07, height=31, width=274)
