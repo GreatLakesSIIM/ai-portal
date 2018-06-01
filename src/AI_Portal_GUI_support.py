@@ -51,6 +51,12 @@ def set_Tk_var():
     tch95_3 = StringVar()
     global sex_select
     sex_select = StringVar()
+    global sex_select2
+    sex_select2 = StringVar()
+    global sex_select3
+    sex_select3 = StringVar()
+    global sex_select4
+    sex_select4 = StringVar()
     global get_reports
     get_reports = StringVar()
     global get_only_reports
