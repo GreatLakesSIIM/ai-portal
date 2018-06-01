@@ -108,6 +108,15 @@ class New_Toplevel:
         for i in match:
             self.Diag_box.insert('end',i)
         return True
+
+    def Preview_dataset():
+        print('Previewing Dataset')
+
+    def Submit_query():
+        print('submitting query')
+
+    def Get_DICOM_images():
+        print("getting DICOM images")
     
     def __init__(self, top=None):
         #spacing variables
@@ -869,6 +878,23 @@ class New_Toplevel:
         self.Radiobutton3_30.configure(justify=LEFT)
         self.Radiobutton3_30.configure(text='''No''')
         self.Radiobutton3_30.configure(variable=AI_Portal_GUI_support.research_PID)
+
+
+        ## Download Notepage
+
+        #Buttons
+        self.download_instructions = Label(self.Download_tab, text = 'When you are satisfied with your selections, preview the data set and then sumbit the query')
+        self.download_instructions.place(relx=0.15, rely=0.1, relheight=0.05, relwidth = 0.7)
+
+        self.preview_button = Button(self.Download_tab, text = 'Preview Dataset', command = New_Toplevel.Preview_dataset)
+        self.preview_button.place(relx=0.4, rely=0.2, relheight=0.05, relwidth = 0.2)
+
+        self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command = New_Toplevel.Submit_query)
+        self.submit_query_button.place(relx=0.4, rely=0.35, relheight=0.05, relwidth = 0.2)
+
+        self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command = New_Toplevel.Get_DICOM_images)
+        self.get_dicom_button.place(relx=0.4, rely=0.5, relheight=0.05, relwidth = 0.2)
+
 
     def validate_month(ch):
         print(ch)
