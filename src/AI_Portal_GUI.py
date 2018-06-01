@@ -66,7 +66,7 @@ playbook_incl = list()
 global RADLEX_incl
 RADLEX_incl = list()
 
-global RADALEX
+global RADLEX
 
 class New_Toplevel:
     def AddProc(self):
@@ -82,10 +82,31 @@ class New_Toplevel:
             self.Procedure_box_selected.delete(i)
     
     def Proc_Filter(self):
-        match = [ s for s in playbook_lut if self.Proc_search.get() in s ]
+        match = [ s for s in playbook_lut if self.Proc_search.get().upper() in s.upper() ]
+        #if not self.Proc_search.get():
+        #    print('Empty')
         self.Procedure_box.delete(0,END)
         for i in match:
             self.Procedure_box.insert('end',i)
+        return True
+        
+    def AddDiag(self):
+        s = self.Diag_box.curselection()
+        for i in s:
+            self.Diag_box_selected.insert('end',RADLEX_lut[i])
+            RADLEX_incl.append(RADLEX_lut_num[i])
+            print(RADLEX_lut_num[i])
+            
+    def DelDiag(self):
+        s = self.Diag_box_selected.curselection()
+        for i in reversed(s):
+            self.Diag_box_selected.delete(i)
+    
+    def Diag_Filter(self):
+        match = [ s for s in RADLEX_lut if self.Diag_search.get().upper() in s.upper() ]
+        self.Diag_box.delete(0,END)
+        for i in match:
+            self.Diag_box.insert('end',i)
         return True
     
     def __init__(self, top=None):
@@ -376,16 +397,15 @@ class New_Toplevel:
         self.Label2_8.configure(text='''/''')
 
         proc_search_var = StringVar()
-        self.Proc_search = Entry(self.Study_tab, textvariable=proc_search_var, validate='all', validatecommand=lambda: New_Toplevel.Proc_Filter(self))
+        proc_search_var.trace("w", lambda name, index, mode, proc_search_var=proc_search_var:New_Toplevel.Proc_Filter(self))
+        self.Proc_search = Entry(self.Study_tab, textvariable=proc_search_var)
         self.Proc_search.place(relx=0.17, rely=0.19,height=26, relwidth=0.37)
         self.Proc_search.configure(background="white")
         self.Proc_search.configure(disabledforeground="#a3a3a3")
         self.Proc_search.configure(font="TkFixedFont")
         self.Proc_search.configure(foreground="#000000")
         self.Proc_search.configure(insertbackground="black")
-        self.Proc_search.configure(width=464)
-        
-        
+        self.Proc_search.configure(width=464)      
 
         self.Label2_8 = Label(self.Study_tab, anchor='w')
         self.Label2_8.place(relx=0.34, rely=0.14, height=31, width=16)
@@ -441,8 +461,10 @@ class New_Toplevel:
         self.Label5.configure(foreground="#000000")
         self.Label5.configure(text='''Diagnosis Search''')
         self.Label5.configure(width=131)
-
-        self.Diag_search = Entry(self.Diagnosis_tab)
+        
+        diag_search_var = StringVar()
+        diag_search_var.trace("w", lambda name, index, mode, diag_search_var=diag_search_var:New_Toplevel.Diag_Filter(self))
+        self.Diag_search = Entry(self.Diagnosis_tab, textvariable=diag_search_var)
         self.Diag_search.place(relx=0.18, rely=0.31,height=26, relwidth=0.44)
         self.Diag_search.configure(background="white")
         self.Diag_search.configure(disabledforeground="#a3a3a3")
@@ -451,31 +473,32 @@ class New_Toplevel:
         self.Diag_search.configure(insertbackground="black")
         self.Diag_search.configure(width=544)
 
-        self.Scrolledlistbox2 = ScrolledListBox(self.Diagnosis_tab)
-        self.Scrolledlistbox2.place(relx=0.01, rely=0.38, relheight=0.59
+        self.Diag_box = ScrolledListBox(self.Diagnosis_tab, selectmode='multiple')
+        self.Diag_box.place(relx=0.01, rely=0.38, relheight=0.59
                 , relwidth=0.61)
-        self.Scrolledlistbox2.configure(background="white")
-        self.Scrolledlistbox2.configure(disabledforeground="#a3a3a3")
-        self.Scrolledlistbox2.configure(font="TkFixedFont")
-        self.Scrolledlistbox2.configure(foreground="black")
-        self.Scrolledlistbox2.configure(highlightbackground="#d9d9d9")
-        self.Scrolledlistbox2.configure(highlightcolor="#d9d9d9")
-        self.Scrolledlistbox2.configure(selectbackground="#c4c4c4")
-        self.Scrolledlistbox2.configure(selectforeground="black")
-        self.Scrolledlistbox2.configure(width=10)
-
-        self.Scrolledlistbox3 = ScrolledListBox(self.Diagnosis_tab)
-        self.Scrolledlistbox3.place(relx=0.64, rely=0.15, relheight=0.8
+        self.Diag_box.configure(background="white")
+        self.Diag_box.configure(disabledforeground="#a3a3a3")
+        self.Diag_box.configure(font="TkFixedFont")
+        self.Diag_box.configure(foreground="black")
+        self.Diag_box.configure(highlightbackground="#d9d9d9")
+        self.Diag_box.configure(highlightcolor="#d9d9d9")
+        self.Diag_box.configure(selectbackground="#c4c4c4")
+        self.Diag_box.configure(selectforeground="black")
+        self.Diag_box.configure(width=10)
+        for label in RADLEX:
+            self.Diag_box.insert('end',label)
+        self.Diag_box_selected = ScrolledListBox(self.Diagnosis_tab, selectmode='multiple')
+        self.Diag_box_selected.place(relx=0.64, rely=0.15, relheight=0.8
                 , relwidth=0.34)
-        self.Scrolledlistbox3.configure(background="white")
-        self.Scrolledlistbox3.configure(disabledforeground="#a3a3a3")
-        self.Scrolledlistbox3.configure(font="TkFixedFont")
-        self.Scrolledlistbox3.configure(foreground="black")
-        self.Scrolledlistbox3.configure(highlightbackground="#d9d9d9")
-        self.Scrolledlistbox3.configure(highlightcolor="#d9d9d9")
-        self.Scrolledlistbox3.configure(selectbackground="#c4c4c4")
-        self.Scrolledlistbox3.configure(selectforeground="black")
-        self.Scrolledlistbox3.configure(width=10)
+        self.Diag_box_selected.configure(background="white")
+        self.Diag_box_selected.configure(disabledforeground="#a3a3a3")
+        self.Diag_box_selected.configure(font="TkFixedFont")
+        self.Diag_box_selected.configure(foreground="black")
+        self.Diag_box_selected.configure(highlightbackground="#d9d9d9")
+        self.Diag_box_selected.configure(highlightcolor="#d9d9d9")
+        self.Diag_box_selected.configure(selectbackground="#c4c4c4")
+        self.Diag_box_selected.configure(selectforeground="black")
+        self.Diag_box_selected.configure(width=10)
 
         self.Label5_18 = Label(self.Diagnosis_tab, anchor='w')
         self.Label5_18.place(relx=0.01, rely=0.08, height=31, width=141)
@@ -616,6 +639,11 @@ class New_Toplevel:
         self.procedure_button.place(relx=.55,rely=.5,height=30,width=30)
         self.procedure_button_del = Button(self.Study_tab, text='<', command=lambda: New_Toplevel.DelProc(self))
         self.procedure_button_del.place(relx=.55,rely=.6,height=30,width=30)
+        
+        self.diag_button = Button(self.Diagnosis_tab, text='>', command=lambda: New_Toplevel.AddDiag(self))
+        self.diag_button.place(relx=.62,rely=.5,height=30,width=30)
+        self.diag_button_del = Button(self.Diagnosis_tab, text='<', command=lambda: New_Toplevel.DelDiag(self))
+        self.diag_button_del.place(relx=.62,rely=.6,height=30,width=30)
         
         self.tNo39_t2_lab67 = Label(self.Patient_tab, anchor='w')
         self.tNo39_t2_lab67.place(relx=0.0, rely=0.0, height=1, width=1)
