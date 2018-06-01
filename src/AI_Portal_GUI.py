@@ -6,6 +6,8 @@
 #    May 31, 2018 04:40:07 PM
 
 import sys
+import os
+import csv
 
 try:
     from Tkinter import *
@@ -47,15 +49,24 @@ def destroy_New_Toplevel():
     w = None
 
 
+
+global RADLEX_lut
+RADLEX_lut = list()
+
+global RADLEX_lut_num
+RADLEX_lut_num = list()
+
 class New_Toplevel:
+    def AddProc(self):
+        s = self.Procedure_box.curselection()
+        print(s)
+    
     def __init__(self, top=None):
         #spacing variables
         leftMargin = 0.015
         topMargin = 0.08
         labelHeight = 31
         labelWidth = 76
-
-
 
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
@@ -78,11 +89,17 @@ class New_Toplevel:
         top.configure(background="#d9d9d9")
 
         #self.root = Tk()
-
+        
+        with open('../lib/RADlex.csv', 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                if row[0] != 'Name or Synonym':
+                    RADLEX_lut.append(row[0])
+                    RADLEX_lut_num.append(row[1])
+                    #self.Procedure_box.insert('end', row[0])
+                        
         self.menubar = Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
         top.configure(menu = self.menubar)
-
-
 
         self.style.configure('TNotebook.Tab', background=_bgcolor)
         self.style.configure('TNotebook.Tab', foreground=_fgcolor)
@@ -343,7 +360,7 @@ class New_Toplevel:
         self.Label2_8.configure(highlightcolor="black")
         self.Label2_8.configure(text='''to''')
 
-        self.Procedure_box = ScrolledListBox(self.Study_tab)
+        self.Procedure_box = ScrolledListBox(self.Study_tab, selectmode='multiple')
         self.Procedure_box.place(relx=0.02, rely=0.25, relheight=0.72
                 , relwidth=0.53)
         self.Procedure_box.configure(background="white")
@@ -355,9 +372,10 @@ class New_Toplevel:
         self.Procedure_box.configure(selectbackground="#c4c4c4")
         self.Procedure_box.configure(selectforeground="black")
         self.Procedure_box.configure(width=10)
-		self.Procedure_box.Listbox.
 		
-
+        for label in RADLEX_lut:
+            self.Procedure_box.insert('end',label)
+        
         self.Scrolledlistbox4 = ScrolledListBox(self.Study_tab)
         self.Scrolledlistbox4.place(relx=0.57, rely=0.14, relheight=0.83
                 , relwidth=0.42)
@@ -555,8 +573,10 @@ class New_Toplevel:
         self.Label3_10.configure(highlightbackground="#d9d9d9")
         self.Label3_10.configure(highlightcolor="black")
         self.Label3_10.configure(text='''Smoking History''')
-        self.Label3_10.configure(width=133)
 
+        self.procedure_button = Button(self.Study_tab, text='>', command=lambda: New_Toplevel.AddProc(self))
+        self.procedure_button.place(relx=.55,rely=.5,height=30,width=30)
+        
         self.tNo39_t2_lab67 = Label(self.Patient_tab, anchor='w')
         self.tNo39_t2_lab67.place(relx=0.0, rely=0.0, height=1, width=1)
         self.tNo39_t2_lab67.configure(activebackground="#f9f9f9")
@@ -578,7 +598,6 @@ class New_Toplevel:
         self.Label3_10.configure(highlightbackground="#d9d9d9")
         self.Label3_10.configure(highlightcolor="black")
         self.Label3_10.configure(text='''Ethnicity/Race''')
-        self.Label3_10.configure(width=113)
 
         self.patient_range_year1 = Spinbox(self.Patient_tab, from_=0, to=120)
         self.patient_range_year1.place(relx=0.17, rely=0.08,relheight=.04, relwidth=0.07)
@@ -999,6 +1018,3 @@ class ScrolledListBox(AutoScroll, Listbox):
 
 if __name__ == '__main__':
     vp_start_gui()
-
-
-
