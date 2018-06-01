@@ -7,6 +7,7 @@
 
 
 import sys
+import AI_Portal_GUI
 
 try:
     from Tkinter import *
@@ -62,7 +63,5 @@ def destroy_window():
     top_level = None
 
 if __name__ == '__main__':
-    import AI_Portal_GUI
     AI_Portal_GUI.vp_start_gui()
-
 

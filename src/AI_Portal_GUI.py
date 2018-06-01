@@ -49,6 +49,8 @@ def destroy_New_Toplevel():
 
 class New_Toplevel:
     def __init__(self, top=None):
+
+
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -121,15 +123,23 @@ class New_Toplevel:
         self.Download_tab.configure(highlightbackground="#d9d9d9")
         self.Download_tab.configure(highlightcolor="black")
 
+<<<<<<< HEAD
         self.Label2 = Label(self.Study_tab)
         self.Label2.place(relx=0.01, rely=0.08, height=31, width=76)
+=======
+        self.Label2 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2.configure(background="#d9d9d9")
         self.Label2.configure(disabledforeground="#a3a3a3")
         self.Label2.configure(foreground="#000000")
         self.Label2.configure(text='''Modality''')
 
+<<<<<<< HEAD
         self.Label2_1 = Label(self.Study_tab)
         self.Label2_1.place(relx=0.01, rely=0.14, height=31, width=96)
+=======
+        self.Label2_1 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2_1.configure(activebackground="#f9f9f9")
         self.Label2_1.configure(activeforeground="black")
         self.Label2_1.configure(background="#d9d9d9")
@@ -141,8 +151,12 @@ class New_Toplevel:
         self.Label2_1.configure(text='''Date Range''')
         self.Label2_1.configure(width=96)
 
+<<<<<<< HEAD
         self.Label2_2 = Label(self.Study_tab)
         self.Label2_2.place(relx=0.01, rely=0.19, height=31, width=146)
+=======
+        self.Label2_2 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2_2.configure(activebackground="#f9f9f9")
         self.Label2_2.configure(activeforeground="black")
         self.Label2_2.configure(background="#d9d9d9")
@@ -268,7 +282,11 @@ class New_Toplevel:
 
         #self.Spinbox1_year2.configure(to="100.0")
 
+<<<<<<< HEAD
         self.Label2_7 = Label(self.Study_tab)
+=======
+        self.Label2_7 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2_7.place(relx=0.2, rely=0.14, height=31, width=16)
         self.Label2_7.configure(activebackground="#f9f9f9")
         self.Label2_7.configure(activeforeground="black")
@@ -280,7 +298,11 @@ class New_Toplevel:
         self.Label2_7.configure(text='''/''')
         self.Label2_7.configure(width=16)
 
+<<<<<<< HEAD
         self.Label2_8 = Label(self.Study_tab)
+=======
+        self.Label2_8 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2_8.place(relx=0.25, rely=0.14, height=31, width=16)
         self.Label2_8.configure(activebackground="#f9f9f9")
         self.Label2_8.configure(activeforeground="black")
@@ -292,7 +314,11 @@ class New_Toplevel:
         self.Label2_8.configure(text='''/''')
         self.Label2_8.configure(width=16)
 
+<<<<<<< HEAD
         self.Label2_8 = Label(self.Study_tab)
+=======
+        self.Label2_8 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2_8.place(relx=0.42, rely=0.14, height=31, width=16)
         self.Label2_8.configure(activebackground="#f9f9f9")
         self.Label2_8.configure(activeforeground="black")
@@ -303,7 +329,11 @@ class New_Toplevel:
         self.Label2_8.configure(highlightcolor="black")
         self.Label2_8.configure(text='''/''')
 
+<<<<<<< HEAD
         self.Label2_8 = Label(self.Study_tab)
+=======
+        self.Label2_8 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2_8.place(relx=0.46, rely=0.14, height=31, width=16)
         self.Label2_8.configure(activebackground="#f9f9f9")
         self.Label2_8.configure(activeforeground="black")
@@ -323,7 +353,11 @@ class New_Toplevel:
         self.Entry1_proc_search.configure(insertbackground="black")
         self.Entry1_proc_search.configure(width=464)
 
+<<<<<<< HEAD
         self.Label2_8 = Label(self.Study_tab)
+=======
+        self.Label2_8 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label2_8.place(relx=0.34, rely=0.14, height=31, width=16)
         self.Label2_8.configure(activebackground="#f9f9f9")
         self.Label2_8.configure(activeforeground="black")
@@ -360,14 +394,22 @@ class New_Toplevel:
         self.Scrolledlistbox4.configure(selectforeground="black")
         self.Scrolledlistbox4.configure(width=10)
 
+<<<<<<< HEAD
         self.Label6 = Label(self.Study_tab)
+=======
+        self.Label6 = Label(self.TNotebook1_t0, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label6.place(relx=0.57, rely=0.08, height=31, width=165)
         self.Label6.configure(background="#d9d9d9")
         self.Label6.configure(disabledforeground="#a3a3a3")
         self.Label6.configure(foreground="#000000")
         self.Label6.configure(text='''Selected Procedures''')
 
+<<<<<<< HEAD
         self.Label5 = Label(self.Diagnosis_tab)
+=======
+        self.Label5 = Label(self.TNotebook1_t1, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label5.place(relx=0.01, rely=0.31, height=31, width=131)
         self.Label5.configure(background="#d9d9d9")
         self.Label5.configure(disabledforeground="#a3a3a3")
@@ -410,7 +452,11 @@ class New_Toplevel:
         self.Scrolledlistbox3.configure(selectforeground="black")
         self.Scrolledlistbox3.configure(width=10)
 
+<<<<<<< HEAD
         self.Label5_18 = Label(self.Diagnosis_tab)
+=======
+        self.Label5_18 = Label(self.TNotebook1_t1, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label5_18.place(relx=0.01, rely=0.08, height=31, width=141)
         self.Label5_18.configure(activebackground="#f9f9f9")
         self.Label5_18.configure(activeforeground="black")
@@ -430,7 +476,11 @@ class New_Toplevel:
         self.Entry4_find_cont.configure(insertbackground="black")
         self.Entry4_find_cont.configure(width=544)
 
+<<<<<<< HEAD
         self.Label5_19 = Label(self.Diagnosis_tab)
+=======
+        self.Label5_19 = Label(self.TNotebook1_t1, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label5_19.place(relx=0.01, rely=0.14, height=31, width=161)
         self.Label5_19.configure(activebackground="#f9f9f9")
         self.Label5_19.configure(activeforeground="black")
@@ -454,7 +504,11 @@ class New_Toplevel:
         self.Entry4_impr_cont.configure(selectbackground="#c4c4c4")
         self.Entry4_impr_cont.configure(selectforeground="black")
 
+<<<<<<< HEAD
         self.Label5_20 = Label(self.Diagnosis_tab)
+=======
+        self.Label5_20 = Label(self.TNotebook1_t1, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label5_20.place(relx=0.01, rely=0.19, height=31, width=141)
         self.Label5_20.configure(activebackground="#f9f9f9")
         self.Label5_20.configure(activeforeground="black")
@@ -473,7 +527,11 @@ class New_Toplevel:
         self.TCombobox3.configure(width=542)
         self.TCombobox3.configure(takefocus="")
 
+<<<<<<< HEAD
         self.Label5_21 = Label(self.Diagnosis_tab)
+=======
+        self.Label5_21 = Label(self.TNotebook1_t1, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label5_21.place(relx=0.01, rely=0.25, height=31, width=111)
         self.Label5_21.configure(activebackground="#f9f9f9")
         self.Label5_21.configure(activeforeground="black")
@@ -508,21 +566,33 @@ class New_Toplevel:
         self.TCheckbutton1_23.configure(takefocus="")
         self.TCheckbutton1_23.configure(text='''Category 3''')
 
+<<<<<<< HEAD
         self.Label7 = Label(self.Diagnosis_tab)
+=======
+        self.Label7 = Label(self.TNotebook1_t1, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label7.place(relx=0.64, rely=0.1, height=31, width=160)
         self.Label7.configure(background="#d9d9d9")
         self.Label7.configure(disabledforeground="#a3a3a3")
         self.Label7.configure(foreground="#000000")
         self.Label7.configure(text='''Selected Diagnoses''')
 
+<<<<<<< HEAD
         self.Label3 = Label(self.Patient_tab)
+=======
+        self.Label3 = Label(self.TNotebook1_t2, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label3.place(relx=0.01, rely=0.08, height=31, width=93)
         self.Label3.configure(background="#d9d9d9")
         self.Label3.configure(disabledforeground="#a3a3a3")
         self.Label3.configure(foreground="#000000")
         self.Label3.configure(text='''Age Range''')
 
+<<<<<<< HEAD
         self.Label3_9 = Label(self.Patient_tab)
+=======
+        self.Label3_9 = Label(self.TNotebook1_t2, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label3_9.place(relx=0.01, rely=0.14, height=31, width=93)
         self.Label3_9.configure(activebackground="#f9f9f9")
         self.Label3_9.configure(activeforeground="black")
@@ -533,7 +603,11 @@ class New_Toplevel:
         self.Label3_9.configure(highlightcolor="black")
         self.Label3_9.configure(text='''Patient Sex''')
 
+<<<<<<< HEAD
         self.Label3_10 = Label(self.Patient_tab)
+=======
+        self.Label3_10 = Label(self.TNotebook1_t2, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label3_10.place(relx=0.01, rely=0.19, height=31, width=133)
         self.Label3_10.configure(activebackground="#f9f9f9")
         self.Label3_10.configure(activeforeground="black")
@@ -545,7 +619,11 @@ class New_Toplevel:
         self.Label3_10.configure(text='''Smoking History''')
         self.Label3_10.configure(width=133)
 
+<<<<<<< HEAD
         self.tNo39_t2_lab67 = Label(self.Patient_tab)
+=======
+        self.tNo39_t2_lab67 = Label(self.TNotebook1_t2, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.tNo39_t2_lab67.place(relx=0.0, rely=0.0, height=1, width=1)
         self.tNo39_t2_lab67.configure(activebackground="#f9f9f9")
         self.tNo39_t2_lab67.configure(activeforeground="black")
@@ -556,7 +634,11 @@ class New_Toplevel:
         self.tNo39_t2_lab67.configure(highlightcolor="black")
         self.tNo39_t2_lab67.configure(text='''Age Range''')
 
+<<<<<<< HEAD
         self.Label3_10 = Label(self.Patient_tab)
+=======
+        self.Label3_10 = Label(self.TNotebook1_t2, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label3_10.place(relx=0.01, rely=0.25, height=31, width=113)
         self.Label3_10.configure(activebackground="#f9f9f9")
         self.Label3_10.configure(activeforeground="black")
@@ -619,7 +701,11 @@ class New_Toplevel:
         # self.Entry2_11.configure(selectbackground="#c4c4c4")
         # self.Entry2_11.configure(selectforeground="black")
 
+<<<<<<< HEAD
         self.Label4 = Label(self.Patient_tab)
+=======
+        self.Label4 = Label(self.TNotebook1_t2, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label4.place(relx=0.24, rely=0.08, height=31, width=47)
         self.Label4.configure(background="#d9d9d9")
         self.Label4.configure(disabledforeground="#a3a3a3")
@@ -747,21 +833,33 @@ class New_Toplevel:
         self.Patient_condition_box.configure(width=432)
         self.Patient_condition_box.configure(takefocus="")
 
+<<<<<<< HEAD
         self.Label1 = Label(self.Dataset_tab)
+=======
+        self.Label1 = Label(self.TNotebook1_t3, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label1.place(relx=0.02, rely=0.07, height=31, width=274)
         self.Label1.configure(background="#d9d9d9")
         self.Label1.configure(disabledforeground="#a3a3a3")
         self.Label1.configure(foreground="#000000")
         self.Label1.configure(text='''Max number of studies to retrieve''')
 
+<<<<<<< HEAD
         self.Label8 = Label(self.Dataset_tab)
+=======
+        self.Label8 = Label(self.TNotebook1_t3, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label8.place(relx=0.02, rely=0.13, height=31, width=189)
         self.Label8.configure(background="#d9d9d9")
         self.Label8.configure(disabledforeground="#a3a3a3")
         self.Label8.configure(foreground="#000000")
         self.Label8.configure(text='''Source to retrieve from''')
 
+<<<<<<< HEAD
         self.Label8_24 = Label(self.Dataset_tab)
+=======
+        self.Label8_24 = Label(self.TNotebook1_t3, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label8_24.place(relx=0.02, rely=0.18, height=31, width=99)
         self.Label8_24.configure(activebackground="#f9f9f9")
         self.Label8_24.configure(activeforeground="black")
@@ -773,7 +871,11 @@ class New_Toplevel:
         self.Label8_24.configure(text='''Get reports?''')
         self.Label8_24.configure(width=99)
 
+<<<<<<< HEAD
         self.Label8_25 = Label(self.Dataset_tab)
+=======
+        self.Label8_25 = Label(self.TNotebook1_t3, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label8_25.place(relx=0.02, rely=0.24, height=31, width=279)
         self.Label8_25.configure(activebackground="#f9f9f9")
         self.Label8_25.configure(activeforeground="black")
@@ -785,7 +887,11 @@ class New_Toplevel:
         self.Label8_25.configure(text='''Only get studies that have reports?''')
         self.Label8_25.configure(width=279)
 
+<<<<<<< HEAD
         self.Label8_26 = Label(self.Dataset_tab)
+=======
+        self.Label8_26 = Label(self.TNotebook1_t3, anchor='w')
+>>>>>>> 8aa24cedbacec9b87e734f302a4185dc81c208ad
         self.Label8_26.place(relx=0.02, rely=0.29, height=31, width=409)
         self.Label8_26.configure(activebackground="#f9f9f9")
         self.Label8_26.configure(activeforeground="black")
