@@ -72,9 +72,9 @@ class New_Toplevel:
     def AddProc(self):
         s = self.Procedure_box.curselection()
         for i in s:
-            self.Procedure_box_selected.insert('end',RADLEX_lut[i])
-            RADLEX_incl.append(RADLEX_lut_num[i])
-            print(RADLEX_lut_num[i])
+            self.Procedure_box_selected.insert('end',playbook_lut[i])
+            playbook_incl.append(playbook_lut_num[i])
+            print(playbook_lut_num[i])
             
     def DelProc(self):
         s = self.Procedure_box_selected.curselection()
@@ -82,7 +82,7 @@ class New_Toplevel:
             self.Procedure_box_selected.delete(i)
     
     def Proc_Filter(self):
-        match = [ s for s in RADLEX_lut if self.Proc_search.get() in s ]
+        match = [ s for s in playbook_lut if self.Proc_search.get() in s ]
         self.Procedure_box.delete(0,END)
         for i in match:
             self.Procedure_box.insert('end',i)
@@ -124,8 +124,15 @@ class New_Toplevel:
                     RADLEX_lut.append(row[0])
                     RADLEX_lut_num.append(row[1])
                     #self.Procedure_box.insert('end', row[0])
-        
+        with open('../lib/complete-playbook-2_5.csv', 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                if row[0] != 'Name or Synonym':
+                    playbook_lut.append(row[4])
+                    playbook_lut_num.append(row[0])
+
         RADLEX = dict(zip(RADLEX_lut,RADLEX_lut_num))
+        playbook = dict(zip(playbook_lut,playbook_lut_num))
         self.menubar = Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
         top.configure(menu = self.menubar)
 
@@ -404,7 +411,7 @@ class New_Toplevel:
         self.Procedure_box.configure(selectforeground="black")
         self.Procedure_box.configure(width=10)
 		
-        for label in RADLEX_lut:
+        for label in playbook_lut:
             self.Procedure_box.insert('end',label)
         
         self.Procedure_box_selected = ScrolledListBox(self.Study_tab, selectmode='multiple')
