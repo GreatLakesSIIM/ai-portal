@@ -406,6 +406,10 @@ proc vTclWindow.top37 {base} {
     ttk::checkbutton $site_4_1.tCh97 \
         -variable tch95 -takefocus {} -text {Category 3} 
     vTcl:DefineAlias "$site_4_1.tCh97" "TCheckbutton1_23" vTcl:WidgetProc "Toplevel1" 1
+    label $site_4_1.lab98 \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -text {Selected Diagnoses} 
+    vTcl:DefineAlias "$site_4_1.lab98" "Label7" vTcl:WidgetProc "Toplevel1" 1
     place $site_4_1.lab82 \
         -in $site_4_1 -x 10 -y 220 -width 131 -relwidth 0 -height 31 \
         -relheight 0 -anchor nw -bordermode ignore 
@@ -447,6 +451,8 @@ proc vTclWindow.top37 {base} {
     place $site_4_1.tCh97 \
         -in $site_4_1 -x 480 -y 180 -width 110 -height 31 -anchor nw \
         -bordermode inside 
+    place $site_4_1.lab98 \
+        -in $site_4_1 -x 800 -y 70 -anchor nw -bordermode ignore 
     frame $top.tNo39.t2 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
