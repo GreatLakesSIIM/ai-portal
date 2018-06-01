@@ -672,6 +672,18 @@ proc vTclWindow.top37 {base} {
         -highlightcolor black -justify left -text No \
         -variable get_only_reports 
     vTcl:DefineAlias "$site_4_3.rad110" "Radiobutton3_28" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad111 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text Yes -variable research_PID 
+    vTcl:DefineAlias "$site_4_3.rad111" "Radiobutton3_29" vTcl:WidgetProc "Toplevel1" 1
+    radiobutton $site_4_3.rad112 \
+        -activebackground {#d9d9d9} -activeforeground {#000000} \
+        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
+        -foreground {#000000} -highlightbackground {#d9d9d9} \
+        -highlightcolor black -justify left -text No -variable research_PID 
+    vTcl:DefineAlias "$site_4_3.rad112" "Radiobutton3_30" vTcl:WidgetProc "Toplevel1" 1
     place $site_4_3.lab40 \
         -in $site_4_3 -x 30 -y 50 -anchor nw -bordermode ignore 
     place $site_4_3.lab99 \
@@ -700,6 +712,12 @@ proc vTclWindow.top37 {base} {
         -bordermode inside 
     place $site_4_3.rad110 \
         -in $site_4_3 -x 550 -y 160 -width 58 -height 37 -anchor nw \
+        -bordermode inside 
+    place $site_4_3.rad111 \
+        -in $site_4_3 -x 470 -y 200 -width 58 -height 37 -anchor nw \
+        -bordermode inside 
+    place $site_4_3.rad112 \
+        -in $site_4_3 -x 550 -y 200 -width 58 -height 37 -anchor nw \
         -bordermode inside 
     frame $top.tNo39.t4 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \

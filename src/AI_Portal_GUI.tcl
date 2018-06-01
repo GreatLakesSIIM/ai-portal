@@ -86,7 +86,7 @@ proc vTclWindow.top37 {base} {
     global vTcl
     global img_list
     set vTcl(save,dflt,origin) 0
-    wm maxsize $top 2296 1254
+    wm maxsize $top 2296 1224
     wm minsize $top 176 1
     wm overrideredirect $top 0
     wm resizable $top 1 1
@@ -109,7 +109,7 @@ proc vTclWindow.top37 {base} {
     frame $top.tNo39.t0 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
-    vTcl:DefineAlias "$top.tNo39.t0" "TNotebook1_t1" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$top.tNo39.t0" "TNotebook1_t0" vTcl:WidgetProc "Toplevel1" 1
     $top.tNo39 add $top.tNo39.t0 \
         -padding 0 -sticky nsew -state normal -text {Study Criteria} \
         -image {} -compound left -underline -1 
@@ -307,7 +307,7 @@ proc vTclWindow.top37 {base} {
     frame $top.tNo39.t1 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
-    vTcl:DefineAlias "$top.tNo39.t1" "TNotebook1_t2" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$top.tNo39.t1" "TNotebook1_t1" vTcl:WidgetProc "Toplevel1" 1
     $top.tNo39 add $top.tNo39.t1 \
         -padding 0 -sticky nsew -state normal \
         -text {Diagnosis and Results Criteria} -image {} -compound left \
@@ -456,7 +456,7 @@ proc vTclWindow.top37 {base} {
     frame $top.tNo39.t2 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
-    vTcl:DefineAlias "$top.tNo39.t2" "TNotebook1_t3" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$top.tNo39.t2" "TNotebook1_t2" vTcl:WidgetProc "Toplevel1" 1
     $top.tNo39 add $top.tNo39.t2 \
         -padding 0 -sticky nsew -state normal -text {Patient Criteria} \
         -image {} -compound none -underline -1 
@@ -602,7 +602,7 @@ proc vTclWindow.top37 {base} {
     frame $top.tNo39.t3 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
-    vTcl:DefineAlias "$top.tNo39.t3" "TNotebook1_t4" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$top.tNo39.t3" "TNotebook1_t3" vTcl:WidgetProc "Toplevel1" 1
     $top.tNo39 add $top.tNo39.t3 \
         -padding 0 -sticky nsew -state normal -text {Data Set Options} \
         -image {} -compound none -underline -1 
@@ -722,7 +722,7 @@ proc vTclWindow.top37 {base} {
     frame $top.tNo39.t4 \
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
-    vTcl:DefineAlias "$top.tNo39.t4" "TNotebook1_t5" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$top.tNo39.t4" "TNotebook1_t4" vTcl:WidgetProc "Toplevel1" 1
     $top.tNo39 add $top.tNo39.t4 \
         -padding 0 -sticky nsew -state normal -text {Download Options} \
         -image {} -compound none -underline -1 
