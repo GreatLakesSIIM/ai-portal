@@ -9,46 +9,60 @@
 import sys
 
 try:
-from Tkinter import *
+    from Tkinter import *
 except ImportError:
-from tkinter import *
+    from tkinter import *
 
 try:
-import ttk
-py3 = False
+    import ttk
+    py3 = False
 except ImportError:
-import tkinter.ttk as ttk
-py3 = True
+    import tkinter.ttk as ttk
+    py3 = True
 def set_Tk_var():
-	global combobox
-	combobox = StringVar()
-	global spinbox
-	spinbox = StringVar()
-	global tch95
-	tch95 = StringVar()
-	global sex_select
-	sex_select = StringVar()
-	global get_reports
-	get_reports = StringVar()
-	global get_only_reports
-	get_only_reports = StringVar()
-	global research_PID
-	research_PID = StringVar()
+    global combobox
+    combobox = StringVar()
+    global spinbox
+    spinbox = StringVar()
+    global spinbox2
+    spinbox2 = StringVar()
+    global spinbox3
+    spinbox3 = StringVar()
+    global spinbox4
+    spinbox4 = StringVar()
+    global spinbox5
+    spinbox5 = StringVar()
+    global spinbox6
+    spinbox6 = StringVar()
+    global spinbox7
+    spinbox7 = StringVar()
+    global spinbox8
+    spinbox8 = StringVar()
+    global tch95
+    tch95 = StringVar()
+    global sex_select
+    sex_select = StringVar()
+    global get_reports
+    get_reports = StringVar()
+    global get_only_reports
+    get_only_reports = StringVar()
+    global research_PID
+    research_PID = StringVar()
 
 def init(top, gui, *args, **kwargs):
-	global w, top_level, root
-	w = gui
-	top_level = top
-	root = top
+    global w, top_level, root
+    w = gui
+    top_level = top
+    root = top
 
 def destroy_window():
-	# Function which closes the window.
-	global top_level
-	top_level.destroy()
-	top_level = None
+    # Function which closes the window.
+    global top_level
+    top_level.destroy()
+    top_level = None
 
 if __name__ == '__main__':
-	import AI_Portal_GUI
-	AI_Portal_GUI.vp_start_gui()
+    import AI_Portal_GUI
+    AI_Portal_GUI.vp_start_gui()
 
 
