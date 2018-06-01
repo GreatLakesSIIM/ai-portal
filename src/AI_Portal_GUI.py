@@ -162,12 +162,13 @@ class New_Toplevel:
         self.Label2_2.configure(text='''Procedure Search''')
         self.Label2_2.configure(width=146)
 
-        self.Study_box = ttk.Combobox(self.Study_tab)
-        self.Study_box.place(relx=0.17, rely=0.08, relheight=0.04
+        self.modality_box = ttk.Combobox(self.Study_tab)
+        self.modality_box.place(relx=0.17, rely=0.08, relheight=0.04
                 , relwidth=0.37)
-        self.Study_box.configure(textvariable=AI_Portal_GUI_support.combobox)
-        self.Study_box.configure(width=462)
-        self.Study_box.configure(takefocus="")
+        self.modality_box.configure(textvariable=AI_Portal_GUI_support.combobox)
+        self.modality_box.configure(width=462)
+        self.modality_box.configure(takefocus="")
+        self.modality_box['values'] = ('CT','XR','PET','US','NM','MR','XA','CR','DR','FL')
         
         #v_m = (self.root.register(self.validate_month),'%S')
 
@@ -474,12 +475,13 @@ class New_Toplevel:
         self.Label5_20.configure(text='''Recommendation''')
         self.Label5_20.configure(width=141)
 
-        self.TCombobox3 = ttk.Combobox(self.Diagnosis_tab)
-        self.TCombobox3.place(relx=0.18, rely=0.19, relheight=0.04
+        self.rec_box = ttk.Combobox(self.Diagnosis_tab)
+        self.rec_box.place(relx=0.18, rely=0.19, relheight=0.04
                 , relwidth=0.43)
-        self.TCombobox3.configure(textvariable=AI_Portal_GUI_support.combobox)
-        self.TCombobox3.configure(width=542)
-        self.TCombobox3.configure(takefocus="")
+        self.rec_box.configure(textvariable=AI_Portal_GUI_support.combobox2)
+        self.rec_box.configure(width=542)
+        self.rec_box.configure(takefocus="")
+        self.rec_box['values'] = ('None','6-month follow-up procedure','12-month follow-up procedure','follow-up procedure')
 
         self.Label5_21 = Label(self.Diagnosis_tab, anchor='w')
         self.Label5_21.place(relx=0.01, rely=0.25, height=31, width=111)
