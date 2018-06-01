@@ -48,18 +48,45 @@ def destroy_New_Toplevel():
     w.destroy()
     w = None
 
-
-
 global RADLEX_lut
 RADLEX_lut = list()
 
 global RADLEX_lut_num
 RADLEX_lut_num = list()
 
+global playbook_lut
+playbook_lut = list()
+
+global playbook_lut_num
+playbook_lut_num = list()
+
+global playbook_incl
+playbook_incl = list()
+
+global RADLEX_incl
+RADLEX_incl = list()
+
+global RADALEX
+
 class New_Toplevel:
     def AddProc(self):
         s = self.Procedure_box.curselection()
-        print(s)
+        for i in s:
+            self.Procedure_box_selected.insert('end',RADLEX_lut[i])
+            RADLEX_incl.append(RADLEX_lut_num[i])
+            print(RADLEX_lut_num[i])
+            
+    def DelProc(self):
+        s = self.Procedure_box_selected.curselection()
+        for i in reversed(s):
+            self.Procedure_box_selected.delete(i)
+    
+    def Proc_Filter(self):
+        match = [ s for s in RADLEX_lut if self.Proc_search.get() in s ]
+        self.Procedure_box.delete(0,END)
+        for i in match:
+            self.Procedure_box.insert('end',i)
+        return True
     
     def __init__(self, top=None):
         #spacing variables
@@ -97,7 +124,8 @@ class New_Toplevel:
                     RADLEX_lut.append(row[0])
                     RADLEX_lut_num.append(row[1])
                     #self.Procedure_box.insert('end', row[0])
-                        
+        
+        RADLEX = dict(zip(RADLEX_lut,RADLEX_lut_num))
         self.menubar = Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
         top.configure(menu = self.menubar)
 
@@ -340,7 +368,8 @@ class New_Toplevel:
         self.Label2_8.configure(highlightcolor="black")
         self.Label2_8.configure(text='''/''')
 
-        self.Proc_search = Entry(self.Study_tab)
+        proc_search_var = StringVar()
+        self.Proc_search = Entry(self.Study_tab, textvariable=proc_search_var, validate='all', validatecommand=lambda: New_Toplevel.Proc_Filter(self))
         self.Proc_search.place(relx=0.17, rely=0.19,height=26, relwidth=0.37)
         self.Proc_search.configure(background="white")
         self.Proc_search.configure(disabledforeground="#a3a3a3")
@@ -348,6 +377,8 @@ class New_Toplevel:
         self.Proc_search.configure(foreground="#000000")
         self.Proc_search.configure(insertbackground="black")
         self.Proc_search.configure(width=464)
+        
+        
 
         self.Label2_8 = Label(self.Study_tab, anchor='w')
         self.Label2_8.place(relx=0.34, rely=0.14, height=31, width=16)
@@ -376,18 +407,18 @@ class New_Toplevel:
         for label in RADLEX_lut:
             self.Procedure_box.insert('end',label)
         
-        self.Scrolledlistbox4 = ScrolledListBox(self.Study_tab)
-        self.Scrolledlistbox4.place(relx=0.57, rely=0.14, relheight=0.83
+        self.Procedure_box_selected = ScrolledListBox(self.Study_tab, selectmode='multiple')
+        self.Procedure_box_selected.place(relx=0.57, rely=0.14, relheight=0.83
                 , relwidth=0.42)
-        self.Scrolledlistbox4.configure(background="white")
-        self.Scrolledlistbox4.configure(disabledforeground="#a3a3a3")
-        self.Scrolledlistbox4.configure(font="TkFixedFont")
-        self.Scrolledlistbox4.configure(foreground="black")
-        self.Scrolledlistbox4.configure(highlightbackground="#d9d9d9")
-        self.Scrolledlistbox4.configure(highlightcolor="#d9d9d9")
-        self.Scrolledlistbox4.configure(selectbackground="#c4c4c4")
-        self.Scrolledlistbox4.configure(selectforeground="black")
-        self.Scrolledlistbox4.configure(width=10)
+        self.Procedure_box_selected.configure(background="white")
+        self.Procedure_box_selected.configure(disabledforeground="#a3a3a3")
+        self.Procedure_box_selected.configure(font="TkFixedFont")
+        self.Procedure_box_selected.configure(foreground="black")
+        self.Procedure_box_selected.configure(highlightbackground="#d9d9d9")
+        self.Procedure_box_selected.configure(highlightcolor="#d9d9d9")
+        self.Procedure_box_selected.configure(selectbackground="#c4c4c4")
+        self.Procedure_box_selected.configure(selectforeground="black")
+        self.Procedure_box_selected.configure(width=10)
 
         self.Label6 = Label(self.Study_tab, anchor='w')
         self.Label6.place(relx=0.57, rely=0.08, height=31, width=165)
@@ -576,6 +607,8 @@ class New_Toplevel:
 
         self.procedure_button = Button(self.Study_tab, text='>', command=lambda: New_Toplevel.AddProc(self))
         self.procedure_button.place(relx=.55,rely=.5,height=30,width=30)
+        self.procedure_button_del = Button(self.Study_tab, text='<', command=lambda: New_Toplevel.DelProc(self))
+        self.procedure_button_del.place(relx=.55,rely=.6,height=30,width=30)
         
         self.tNo39_t2_lab67 = Label(self.Patient_tab, anchor='w')
         self.tNo39_t2_lab67.place(relx=0.0, rely=0.0, height=1, width=1)
