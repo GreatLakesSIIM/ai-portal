@@ -24,6 +24,16 @@ def set_Tk_var():
     combobox = StringVar()
     global spinbox
     spinbox = StringVar()
+    global spinbox2
+    spinbox2 = StringVar()
+    global spinbox3
+    spinbox3 = StringVar()
+    global spinbox4
+    spinbox4 = StringVar()
+    global spinbox5
+    spinbox5 = StringVar()
+    global spinbox6
+    spinbox6 = StringVar()
     global tch95
     tch95 = StringVar()
     global sex_select
