@@ -343,18 +343,20 @@ class New_Toplevel:
         self.Label2_8.configure(highlightcolor="black")
         self.Label2_8.configure(text='''to''')
 
-        self.Scrolledlistbox1 = ScrolledListBox(self.Study_tab)
-        self.Scrolledlistbox1.place(relx=0.02, rely=0.25, relheight=0.72
+        self.Procedure_box = ScrolledListBox(self.Study_tab)
+        self.Procedure_box.place(relx=0.02, rely=0.25, relheight=0.72
                 , relwidth=0.53)
-        self.Scrolledlistbox1.configure(background="white")
-        self.Scrolledlistbox1.configure(disabledforeground="#a3a3a3")
-        self.Scrolledlistbox1.configure(font="TkFixedFont")
-        self.Scrolledlistbox1.configure(foreground="black")
-        self.Scrolledlistbox1.configure(highlightbackground="#d9d9d9")
-        self.Scrolledlistbox1.configure(highlightcolor="#d9d9d9")
-        self.Scrolledlistbox1.configure(selectbackground="#c4c4c4")
-        self.Scrolledlistbox1.configure(selectforeground="black")
-        self.Scrolledlistbox1.configure(width=10)
+        self.Procedure_box.configure(background="white")
+        self.Procedure_box.configure(disabledforeground="#a3a3a3")
+        self.Procedure_box.configure(font="TkFixedFont")
+        self.Procedure_box.configure(foreground="black")
+        self.Procedure_box.configure(highlightbackground="#d9d9d9")
+        self.Procedure_box.configure(highlightcolor="#d9d9d9")
+        self.Procedure_box.configure(selectbackground="#c4c4c4")
+        self.Procedure_box.configure(selectforeground="black")
+        self.Procedure_box.configure(width=10)
+		self.Procedure_box.Listbox.
+		
 
         self.Scrolledlistbox4 = ScrolledListBox(self.Study_tab)
         self.Scrolledlistbox4.place(relx=0.57, rely=0.14, relheight=0.83
