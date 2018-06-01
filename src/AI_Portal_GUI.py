@@ -679,26 +679,26 @@ class New_Toplevel:
         self.any_smoker_button.place(relx=0.17, rely=0.19, relheight=0.05
                 , relwidth=0.05)
         self.any_smoker_button.configure(text='''Any''')
-        #self.other_sex_button.configure(variable=AI_Portal_GUI_support.smoke_select)
+        self.any_smoker_button.configure(variable=AI_Portal_GUI_support.smoke_select)
 
         self.current_smoker_button = ttk.Checkbutton(self.Patient_tab)
         self.current_smoker_button.place(relx=0.39, rely=0.19, relheight=0.05
                 , relwidth=0.13)
         self.current_smoker_button.configure(text='''Current smoker''')
-        #self.other_sex_button.configure(variable=AI_Portal_GUI_support.smoke_select2)
+        self.current_smoker_button.configure(variable=AI_Portal_GUI_support.smoke_select2)
 
         self.past_smoker_button = ttk.Checkbutton(self.Patient_tab)
         self.past_smoker_button.place(relx=0.29, rely=0.19, relheight=0.05
                 , relwidth=0.09)
         self.past_smoker_button.configure(text='''Past smoker''')
         self.past_smoker_button.configure(width=132)
-        #self.other_sex_button.configure(variable=AI_Portal_GUI_support.smoke_select3)
+        self.past_smoker_button.configure(variable=AI_Portal_GUI_support.smoke_select3)
 
         self.never_smoker_button = ttk.Checkbutton(self.Patient_tab)
         self.never_smoker_button.place(relx=0.22, rely=0.19, relheight=0.05
                 , relwidth=0.07)
         self.never_smoker_button.configure(text='''Never''')
-        #self.other_sex_button.configure(variable=AI_Portal_GUI_support.smoke_select4)
+        self.never_smoker_button.configure(variable=AI_Portal_GUI_support.smoke_select4)
 
         # Ethnicity section
         self.Patient_ethn_box = ttk.Combobox(self.Patient_tab)
