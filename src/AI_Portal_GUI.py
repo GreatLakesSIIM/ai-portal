@@ -13,6 +13,7 @@ try:
     from Tkinter import *
 except ImportError:
     from tkinter import *
+    from tkinter import messagebox
 
 try:
     import ttk
@@ -99,14 +100,10 @@ class New_Toplevel:
         s = self.Procedure_box_selected.curselection()
         for i in reversed(s):
             self.Procedure_box_selected.delete(i)
-<<<<<<< HEAD
             playbook_incl.pop(i)
-    
-=======
             print(i)
             #playbook_incl.remove(i)
 
->>>>>>> 2690382f823319ac4512d6602f363153e5de116c
     def Proc_Filter(self):
         match = [ s for s in playbook_lut if self.Proc_search.get().upper() in s.upper() ]
         #if not self.Proc_search.get():
@@ -115,20 +112,21 @@ class New_Toplevel:
         for i in match:
             self.Procedure_box.insert('end',i)
         return True
-        
+
     def AddDiag(self):
         s = self.Diag_box.curselection()
         g = self.Diag_box.get(0,END)
         for i in s:
             self.Diag_box_selected.insert('end',g[i])
             RADLEX_incl.append(RADLEX[g[i]])
-            
+
     def DelDiag(self):
         s = self.Diag_box_selected.curselection()
         for i in reversed(s):
             self.Diag_box_selected.delete(i)
             RADLEX_incl.pop(i)
-    
+            RADLEX_incl.remove(i)
+
     def Diag_Filter(self):
         match = [ s for s in RADLEX_lut if self.Diag_search.get().upper() in s.upper() ]
         self.Diag_box.delete(0,END)
@@ -138,6 +136,97 @@ class New_Toplevel:
 
     def Preview_dataset(self):
         print('Previewing Dataset...')
+        previewMessage = 'Dataset Criteria: \r\n'
+        #modality
+        modality = self.modality_box.get()
+        previewMessage += 'Modality: ' + modality + '\r\n'
+
+        #date range
+        dateRange = str(self.start_month.get()) + "/" + str(self.start_day.get()) + "/" + str(self.start_year.get()) + " to " + str(self.stop_month.get()) + "/" + str(self.stop_day.get()) + "/" + str(self.stop_year.get())
+        previewMessage += 'Date Range: ' + dateRange + '\r\n'
+
+        #procedure
+        procedureNames = []
+        for procedureCode in playbook_incl:
+            procedureName = [key for key, value in playbook.items() if value == procedureCode][0]
+            procedureNames.append(procedureName)
+        procedureNames = ', '.join(procedureNames)
+        previewMessage += 'Selected Procedures: ' + procedureNames + '\r\n'
+
+        #findings
+        findings = self.Entry4_find_cont.get()
+        if findings:
+            previewMessage += 'Findings Include: ' + findings + '\r\n'
+
+        #impression
+        impression = self.Entry4_impr_cont.get()
+        if impression:
+            previewMessage += 'Impression Include: ' + impression + '\r\n'
+
+        #recommendation
+        recommendation = self.rec_box.get()
+        previewMessage += 'Radiologist Recommendation: ' + recommendation + '\r\n'
+
+        #critical results
+        criticalResultsSelections = []
+        if self.cat1_button.state():
+            criticalResultsSelections.append('any')
+        if self.cat2_button.state():
+            criticalResultsSelections.append('past smoker')
+        if self.cat3_button.state():
+            criticalResultsSelections.append('current smoker')
+        criticalResultsSelections = ', '.join(criticalResultsSelections)
+        previewMessage += 'Selected smoking status: ' + criticalResultsSelections + '\r\n'
+
+        #diagnosis
+        diagnosisNames = []
+        for diagnosisCode in RADLEX_incl:
+            diagnosisName = [key for key, value in RADLEX.items() if value == diagnosisCode][0]
+            diagnosisNames.append(diagnosisName)
+        diagnosisNames = ', '.join(diagnosisNames)
+        previewMessage += 'Selected Diagnoses: ' + diagnosisNames + '\r\n'
+
+        #age range
+        ageRange = str(self.patient_range_year1.get()) + " to " + str(self.patient_range_year2.get())
+        previewMessage += 'Age Range: ' + ageRange + '\r\n'
+
+        #sex
+        sexSelection = []
+        if self.any_sex_button.state():
+            sexSelection.append('any')
+        if self.M_sex_button.state():
+            sexSelection.append('male')
+        if self.F_sex_button.state():
+            sexSelection.append('female')
+        if self.other_sex_button.state():
+            sexSelection.append('other')
+        sexSelection = ', '.join(sexSelection)
+        previewMessage += 'Selected sexes: ' + sexSelection + '\r\n'
+
+        #smoking
+        smokingSelection = []
+        if self.any_smoker_button.state():
+            smokingSelection.append('any')
+        if self.past_smoker_button.state():
+            smokingSelection.append('past smoker')
+        if self.current_smoker_button.state():
+            smokingSelection.append('current smoker')
+        if self.never_smoker_button.state():
+            smokingSelection.append('never smoked')
+        smokingSelection = ', '.join(smokingSelection)
+        previewMessage += 'Selected smoking status: ' + smokingSelection + '\r\n'
+
+        #ethinicity
+        ethnicity = self.Patient_ethn_box.get()
+        previewMessage += 'Selected Ethnicities/Races: ' + ethnicity + '\r\n'
+        #max
+        maxStudies = self.max_studies.get()
+        previewMessage += 'Max number of studies: ' + maxStudies + '\r\n'
+        #source
+        #get reports
+        #get studies with reports
+        #create research PID
+        messagebox.showinfo('Preview', previewMessage)
 
     def Submit_query(self):
         print('Submitting query...')
@@ -202,7 +291,6 @@ class New_Toplevel:
     def Get_DICOM_images(self):
         print("Getting DICOM images...")
 
-    
     def __init__(self, top=None):
         #spacing variables
         leftMargin = 0.015
@@ -254,7 +342,7 @@ class New_Toplevel:
                     RAD2L_lut_RAD.append(row[6])
                     RAD2L_lut_RPID.append(row[8])
         
-        RAD2L.update(zip(RAD2L_lut_RAD,RAD2L_lut_LOINC))
+        RAD2L.update(zip(RAD2L_lut_RAD,RAD2L_lut_LOINC))          
         RPID2L.update(zip(RAD2L_lut_RPID,RAD2L_lut_LOINC))
         RADLEX.update(zip(RADLEX_lut,RADLEX_lut_num))
         playbook.update(zip(playbook_lut,playbook_lut_num))
@@ -624,28 +712,29 @@ class New_Toplevel:
         self.Label5_21.configure(text='''Critical Results''')
         self.Label5_21.configure(width=111)
 
-        self.style.map('TCheckbutton',background=
+        self.style.map('cat1_button',background=
             [('selected', _bgcolor), ('active', _ana2color)])
-        self.TCheckbutton1 = ttk.Checkbutton(self.Diagnosis_tab)
-        self.TCheckbutton1.place(relx=0.18, rely=0.25, relwidth=0.09
+        self.cat1_button = ttk.Checkbutton(self.Diagnosis_tab)
+        self.cat1_button.place(relx=0.18, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-        self.TCheckbutton1.configure(variable=AI_Portal_GUI_support.crit)
-        self.TCheckbutton1.configure(takefocus="")
-        self.TCheckbutton1.configure(text='''Category 1''')
+        self.cat1_button.configure(variable=AI_Portal_GUI_support.crit)
+        self.cat1_button.configure(takefocus="")
+        self.cat1_button.configure(text='''Category 1''')
 
-        self.TCheckbutton1_22 = ttk.Checkbutton(self.Diagnosis_tab)
-        self.TCheckbutton1_22.place(relx=0.28, rely=0.25, relwidth=0.09
-                , relheight=0.0, height=31)
-        self.TCheckbutton1_22.configure(variable=AI_Portal_GUI_support.crit2)
-        self.TCheckbutton1_22.configure(takefocus="")
-        self.TCheckbutton1_22.configure(text='''Category 2''')
 
-        self.TCheckbutton1_23 = ttk.Checkbutton(self.Diagnosis_tab)
-        self.TCheckbutton1_23.place(relx=0.38, rely=0.25, relwidth=0.09
+        self.cat2_button = ttk.Checkbutton(self.Diagnosis_tab)
+        self.cat2_button.place(relx=0.28, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-        self.TCheckbutton1_23.configure(variable=AI_Portal_GUI_support.crit3)
-        self.TCheckbutton1_23.configure(takefocus="")
-        self.TCheckbutton1_23.configure(text='''Category 3''')
+        self.cat2_button.configure(variable=AI_Portal_GUI_support.crit2)
+        self.cat2_button.configure(takefocus="")
+        self.cat2_button.configure(text='''Category 2''')
+
+        self.cat3_button = ttk.Checkbutton(self.Diagnosis_tab)
+        self.cat3_button.place(relx=0.38, rely=0.25, relwidth=0.09
+                , relheight=0.0, height=31)
+        self.cat3_button.configure(variable=AI_Portal_GUI_support.crit3)
+        self.cat3_button.configure(takefocus="")
+        self.cat3_button.configure(text='''Category 3''')
 
         self.Label7 = Label(self.Diagnosis_tab, anchor='w')
         self.Label7.place(relx=0.64, rely=0.1, height=31, width=160)
