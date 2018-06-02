@@ -115,24 +115,15 @@ class New_Toplevel:
             self.Diag_box.insert('end',i)
         return True
 
-    def Preview_dataset():
+    def Preview_dataset(self):
         print('Previewing Dataset...')
 
-    def Submit_query():
+    def Submit_query(self):
         print('Submitting query...')
 
-    def Get_DICOM_images():
+    def Get_DICOM_images(self):
         print("Getting DICOM images...")
 
-    def Preview_dataset(self):
-        print('Previewing Dataset')
-
-
-    def Submit_query(self):
-        print('submitting query')
-
-    def Get_DICOM_images(self):
-        print("getting DICOM images")
     
     def __init__(self, top=None):
         #spacing variables
