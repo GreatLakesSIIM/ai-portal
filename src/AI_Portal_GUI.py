@@ -99,8 +99,14 @@ class New_Toplevel:
         s = self.Procedure_box_selected.curselection()
         for i in reversed(s):
             self.Procedure_box_selected.delete(i)
+<<<<<<< HEAD
             playbook_incl.pop(i)
     
+=======
+            print(i)
+            #playbook_incl.remove(i)
+
+>>>>>>> 2690382f823319ac4512d6602f363153e5de116c
     def Proc_Filter(self):
         match = [ s for s in playbook_lut if self.Proc_search.get().upper() in s.upper() ]
         #if not self.Proc_search.get():
