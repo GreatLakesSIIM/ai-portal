@@ -114,6 +114,15 @@ class New_Toplevel:
         for i in match:
             self.Diag_box.insert('end',i)
         return True
+
+    def Preview_dataset():
+        print('Previewing Dataset')
+
+    def Submit_query():
+        print('submitting query')
+
+    def Get_DICOM_images():
+        print("getting DICOM images")
     
     def __init__(self, top=None):
         #spacing variables
@@ -806,7 +815,7 @@ class New_Toplevel:
         self.yes_reports.configure(justify=LEFT)
         self.yes_reports.configure(text='''Yes''')
         self.yes_reports.configure(variable=AI_Portal_GUI_support.get_reports)
-        
+
         self.no_reports = Radiobutton(self.Dataset_tab, variable=get_reports,value=0)
         self.no_reports.place(relx=0.44, rely=0.17, relheight=0.05
                 , relwidth=0.05)
@@ -821,7 +830,7 @@ class New_Toplevel:
         self.no_reports.configure(text='''No''')
         self.no_reports.configure(variable=AI_Portal_GUI_support.get_reports)
         self.yes_reports.select()
-        
+
         only_reports = IntVar()
         self.yes_only_reports = Radiobutton(self.Dataset_tab, variable=only_reports,value=1)
         self.yes_only_reports.place(relx=0.38, rely=0.22, relheight=0.05
@@ -881,6 +890,29 @@ class New_Toplevel:
         self.rpid_no.configure(text='''No''')
         self.rpid_no.configure(variable=AI_Portal_GUI_support.research_PID)
         self.rpid_yes.select()
+<<<<<<< HEAD
+=======
+
+
+        ## Download Notepage
+
+        #Buttons
+        self.download_instructions = Label(self.Download_tab, text = 'When you are satisfied with your selections, preview the data set and then sumbit the query')
+        self.download_instructions.place(relx=0.15, rely=0.1, relheight=0.05, relwidth = 0.7)
+
+        self.preview_button = Button(self.Download_tab, text = 'Preview Dataset', command = New_Toplevel.Preview_dataset)
+        self.preview_button.place(relx=0.4, rely=0.2, relheight=0.05, relwidth = 0.2)
+
+        self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command = New_Toplevel.Submit_query)
+        self.submit_query_button.place(relx=0.4, rely=0.35, relheight=0.05, relwidth = 0.2)
+
+        self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command = New_Toplevel.Get_DICOM_images)
+        self.get_dicom_button.place(relx=0.4, rely=0.5, relheight=0.05, relwidth = 0.2)
+
+
+    def validate_month(ch):
+        print(ch)
+>>>>>>> 81cbc059dba8e78bae195b235dbfeae9e382f00d
 
 
 # The following code is added to facilitate the Scrolled widgets you specified.
