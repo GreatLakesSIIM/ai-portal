@@ -695,41 +695,24 @@ class New_Toplevel:
         self.cat1_button = ttk.Checkbutton(self.Diagnosis_tab)
         self.cat1_button.place(relx=0.18, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-<<<<<<< HEAD
-        self.cat1_button.configure(variable=AI_Portal_GUI_support.tch95)
+        self.cat1_button.configure(variable=AI_Portal_GUI_support.crit)
         self.cat1_button.configure(takefocus="")
         self.cat1_button.configure(text='''Category 1''')
-=======
-        self.TCheckbutton1.configure(variable=AI_Portal_GUI_support.crit)
-        self.TCheckbutton1.configure(takefocus="")
-        self.TCheckbutton1.configure(text='''Category 1''')
->>>>>>> f8d7e578ea362323688272e6295fd9f769c2228e
+
 
         self.cat2_button = ttk.Checkbutton(self.Diagnosis_tab)
         self.cat2_button.place(relx=0.28, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-<<<<<<< HEAD
-        self.cat2_button.configure(variable=AI_Portal_GUI_support.tch95_2)
+        self.cat2_button.configure(variable=AI_Portal_GUI_support.crit2)
         self.cat2_button.configure(takefocus="")
         self.cat2_button.configure(text='''Category 2''')
-=======
-        self.TCheckbutton1_22.configure(variable=AI_Portal_GUI_support.crit2)
-        self.TCheckbutton1_22.configure(takefocus="")
-        self.TCheckbutton1_22.configure(text='''Category 2''')
->>>>>>> f8d7e578ea362323688272e6295fd9f769c2228e
 
         self.cat3_button = ttk.Checkbutton(self.Diagnosis_tab)
         self.cat3_button.place(relx=0.38, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-<<<<<<< HEAD
-        self.cat3_button.configure(variable=AI_Portal_GUI_support.tch95_3)
+        self.cat3_button.configure(variable=AI_Portal_GUI_support.crit3)
         self.cat3_button.configure(takefocus="")
         self.cat3_button.configure(text='''Category 3''')
-=======
-        self.TCheckbutton1_23.configure(variable=AI_Portal_GUI_support.crit3)
-        self.TCheckbutton1_23.configure(takefocus="")
-        self.TCheckbutton1_23.configure(text='''Category 3''')
->>>>>>> f8d7e578ea362323688272e6295fd9f769c2228e
 
         self.Label7 = Label(self.Diagnosis_tab, anchor='w')
         self.Label7.place(relx=0.64, rely=0.1, height=31, width=160)
