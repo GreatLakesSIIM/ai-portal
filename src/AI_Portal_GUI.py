@@ -345,7 +345,7 @@ class New_Toplevel:
                                 for gggchild in ggchild:
                                     if (gggchild.tag == '{http://hl7.org/fhir}id'):
                                         id_list.append(gggchild.attrib['value'])
-                                        print('ImageingStudy/DiagnosticReport: ' + gggchild.attrib['value'])
+                                        print('ImagingStudy/DiagnosticReport: ' + gggchild.attrib['value'])
             for ids in id_list:
                 url = "http://hackathon.siim.org/fhir/ImagingStudy/" + str(ids)
                 headers = {
@@ -356,6 +356,7 @@ class New_Toplevel:
                     }
                 response = requests.request("GET", url, headers=headers)
                 image_studies = et.fromstring(response.text)
+                print('Query found DICOM 4 images.')
                 for child in image_studies:
                     if (child.tag == '{http://hl7.org/fhir}uid'):
                         uid_arr = child.attrib['value'].split(':')
