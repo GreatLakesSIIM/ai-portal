@@ -10,7 +10,6 @@ import os
 import csv
 import requests
 import xml.etree.ElementTree as et
-
 try:
     from Tkinter import *
 except ImportError:
@@ -91,6 +90,13 @@ global RPID2L
 RPID2L = dict()
 
 class New_Toplevel:
+    def getText(nodelist):
+        rc = []
+        for node in nodelist:
+            if node.nodeType == node.TEXT_NODE:
+                rc.append(node.data)
+        return ''.join(rc)
+        
     def AddProc(self):
         s = self.Procedure_box.curselection()
         g = self.Procedure_box.get(0,END)
@@ -276,8 +282,19 @@ class New_Toplevel:
                 'accept': "text/xml"
                 }
         if(diag):
+            id_list = list()
             response = requests.request("GET", url, headers=headers, params=querystring)
             diagnostic_reports = et.fromstring(response.text)
+            for child in diagnostic_reports:
+                for gchild in child:
+                    if (gchild.tag == '{http://hl7.org/fhir}resource'):
+                        for ggchild in gchild:
+                            for gggchild in ggchild:
+                                if (gggchild.tag == '{http://hl7.org/fhir}id'):
+                                    id_list.append(gggchild.attrib['value'])
+            for ids in id_list:
+                print(ids)
+            
             
         age1 = self.patient_range_year1.get()
         age2 = self.patient_range_year2.get()
