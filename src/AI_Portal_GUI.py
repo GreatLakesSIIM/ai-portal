@@ -890,9 +890,6 @@ class New_Toplevel:
         self.rpid_no.configure(text='''No''')
         self.rpid_no.configure(variable=AI_Portal_GUI_support.research_PID)
         self.rpid_yes.select()
-<<<<<<< HEAD
-=======
-
 
         ## Download Notepage
 
@@ -908,12 +905,6 @@ class New_Toplevel:
 
         self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command = New_Toplevel.Get_DICOM_images)
         self.get_dicom_button.place(relx=0.4, rely=0.5, relheight=0.05, relwidth = 0.2)
-
-
-    def validate_month(ch):
-        print(ch)
->>>>>>> 81cbc059dba8e78bae195b235dbfeae9e382f00d
-
 
 # The following code is added to facilitate the Scrolled widgets you specified.
 class AutoScroll(object):
