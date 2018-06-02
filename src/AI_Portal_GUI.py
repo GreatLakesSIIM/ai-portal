@@ -72,6 +72,9 @@ RADLEX = dict()
 global playbook
 playbook = dict()
 
+global RAD2L
+RAD2L = dict()
+
 class New_Toplevel:
     def AddProc(self):
         s = self.Procedure_box.curselection()
@@ -120,6 +123,58 @@ class New_Toplevel:
 
     def Submit_query(self):
         print('Submitting query...')
+        modality = self.modality_box.get()
+        #print(modality)
+        
+        day_start = self.start_day.get()
+        month_start = self.start_month.get()
+        year_start = self.start_year.get()
+        date_start = [day_start,month_start,year_start]
+        #print(date_start)
+        
+        proc_codes = playbook_incl
+        findings = self.findings_cont.get()
+        impressions = self.impressions_cont.get()
+        #print(findings)
+        #print(impressions)
+        
+        recommendations = self.rec_box.get()
+        #print(recommendations)
+        
+        crit_results = [AI_Portal_GUI_support.crit.get(),AI_Portal_GUI_support.crit2.get(),
+        AI_Portal_GUI_support.crit3.get()]
+        #print(crit_results)
+        
+        diag = RADLEX_incl
+        
+        age1 = self.patient_range_year1.get()
+        age2 = self.patient_range_year2.get()
+        age_range = [age1,age2]
+        #print(age_range)
+        
+        sex = [AI_Portal_GUI_support.sex_select.get(),AI_Portal_GUI_support.sex_select2.get(),
+        AI_Portal_GUI_support.sex_select3.get(),AI_Portal_GUI_support.sex_select4.get()]
+        
+        smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
+        AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
+        #print(sex)
+        #print(smoke)
+        
+        race = self.Patient_ethn_box.get()
+        #print(race)
+        
+        num_studies = self.max_studies.get()
+        source = self.Retrieve_src.get()
+        #print(num_studies)
+        #print(source)
+        
+        reports = AI_Portal_GUI_support.get_reports.get()
+        only_reports = AI_Portal_GUI_support.get_only_reports.get()
+        rpid = AI_Portal_GUI_support.research_PID.get()
+        #print(reports)
+        #print(only_reports)
+        #print(rpid)
+        
 
     def Get_DICOM_images(self):
         print("Getting DICOM images...")
@@ -164,10 +219,18 @@ class New_Toplevel:
         with open('../lib/complete-playbook-2_5.csv', 'r') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                if row[0] != 'Name or Synonym':
+                if row[0] != 'RPID':
                     playbook_lut.append(row[4])
                     playbook_lut_num.append(row[0])
 
+        with open('../lib/RADLEX_to_LOINC.csv','r') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                if row[0] != 'LoincNumber':
+                    RAD2L_lut_LOINC.append(row[0])
+                    RAD2L_lut_RAD.append(row[6])
+        
+        RAD2L.update(zip(RAD2L_lut_RAD,RAD2L_lut_LOINC))          
         RADLEX.update(zip(RADLEX_lut,RADLEX_lut_num))
         playbook.update(zip(playbook_lut,playbook_lut_num))
         self.menubar = Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
@@ -471,14 +534,14 @@ class New_Toplevel:
         self.Label5_18.configure(highlightcolor="black")
         self.Label5_18.configure(text='''Findings Contains''')
 
-        self.Entry4_find_cont = Entry(self.Diagnosis_tab)
-        self.Entry4_find_cont.place(relx=0.18, rely=0.08,height=26, relwidth=0.44)
-        self.Entry4_find_cont.configure(background="white")
-        self.Entry4_find_cont.configure(disabledforeground="#a3a3a3")
-        self.Entry4_find_cont.configure(font="TkFixedFont")
-        self.Entry4_find_cont.configure(foreground="#000000")
-        self.Entry4_find_cont.configure(insertbackground="black")
-        self.Entry4_find_cont.configure(width=544)
+        self.findings_cont = Entry(self.Diagnosis_tab)
+        self.findings_cont.place(relx=0.18, rely=0.08,height=26, relwidth=0.44)
+        self.findings_cont.configure(background="white")
+        self.findings_cont.configure(disabledforeground="#a3a3a3")
+        self.findings_cont.configure(font="TkFixedFont")
+        self.findings_cont.configure(foreground="#000000")
+        self.findings_cont.configure(insertbackground="black")
+        self.findings_cont.configure(width=544)
 
         self.Label5_19 = Label(self.Diagnosis_tab, anchor='w')
         self.Label5_19.place(relx=0.01, rely=0.14, height=31, width=161)
@@ -492,17 +555,17 @@ class New_Toplevel:
         self.Label5_19.configure(text='''Impression Contains''')
         self.Label5_19.configure(width=161)
 
-        self.Entry4_impr_cont = Entry(self.Diagnosis_tab)
-        self.Entry4_impr_cont.place(relx=0.18, rely=0.14,height=26, relwidth=0.44)
-        self.Entry4_impr_cont.configure(background="white")
-        self.Entry4_impr_cont.configure(disabledforeground="#a3a3a3")
-        self.Entry4_impr_cont.configure(font="TkFixedFont")
-        self.Entry4_impr_cont.configure(foreground="#000000")
-        self.Entry4_impr_cont.configure(highlightbackground="#d9d9d9")
-        self.Entry4_impr_cont.configure(highlightcolor="black")
-        self.Entry4_impr_cont.configure(insertbackground="black")
-        self.Entry4_impr_cont.configure(selectbackground="#c4c4c4")
-        self.Entry4_impr_cont.configure(selectforeground="black")
+        self.impressions_cont = Entry(self.Diagnosis_tab)
+        self.impressions_cont.place(relx=0.18, rely=0.14,height=26, relwidth=0.44)
+        self.impressions_cont.configure(background="white")
+        self.impressions_cont.configure(disabledforeground="#a3a3a3")
+        self.impressions_cont.configure(font="TkFixedFont")
+        self.impressions_cont.configure(foreground="#000000")
+        self.impressions_cont.configure(highlightbackground="#d9d9d9")
+        self.impressions_cont.configure(highlightcolor="black")
+        self.impressions_cont.configure(insertbackground="black")
+        self.impressions_cont.configure(selectbackground="#c4c4c4")
+        self.impressions_cont.configure(selectforeground="black")
 
         self.Label5_20 = Label(self.Diagnosis_tab, anchor='w')
         self.Label5_20.place(relx=0.01, rely=0.19, height=31, width=141)
@@ -541,21 +604,21 @@ class New_Toplevel:
         self.TCheckbutton1 = ttk.Checkbutton(self.Diagnosis_tab)
         self.TCheckbutton1.place(relx=0.18, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-        self.TCheckbutton1.configure(variable=AI_Portal_GUI_support.tch95)
+        self.TCheckbutton1.configure(variable=AI_Portal_GUI_support.crit)
         self.TCheckbutton1.configure(takefocus="")
         self.TCheckbutton1.configure(text='''Category 1''')
 
         self.TCheckbutton1_22 = ttk.Checkbutton(self.Diagnosis_tab)
         self.TCheckbutton1_22.place(relx=0.28, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-        self.TCheckbutton1_22.configure(variable=AI_Portal_GUI_support.tch95_2)
+        self.TCheckbutton1_22.configure(variable=AI_Portal_GUI_support.crit2)
         self.TCheckbutton1_22.configure(takefocus="")
         self.TCheckbutton1_22.configure(text='''Category 2''')
 
         self.TCheckbutton1_23 = ttk.Checkbutton(self.Diagnosis_tab)
         self.TCheckbutton1_23.place(relx=0.38, rely=0.25, relwidth=0.09
                 , relheight=0.0, height=31)
-        self.TCheckbutton1_23.configure(variable=AI_Portal_GUI_support.tch95_3)
+        self.TCheckbutton1_23.configure(variable=AI_Portal_GUI_support.crit3)
         self.TCheckbutton1_23.configure(takefocus="")
         self.TCheckbutton1_23.configure(text='''Category 3''')
 
