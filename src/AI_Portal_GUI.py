@@ -8,6 +8,7 @@
 import sys
 import os
 import csv
+import requests
 
 try:
     from Tkinter import *
@@ -154,12 +155,12 @@ class New_Toplevel:
         previewMessage += 'Selected Procedures: ' + procedureNames + '\r\n'
 
         #findings
-        findings = self.Entry4_find_cont.get()
+        findings = self.findings_cont.get()
         if findings:
             previewMessage += 'Findings Include: ' + findings + '\r\n'
 
         #impression
-        impression = self.Entry4_impr_cont.get()
+        impression = self.impressions_cont.get()
         if impression:
             previewMessage += 'Impression Include: ' + impression + '\r\n'
 
@@ -256,9 +257,26 @@ class New_Toplevel:
         
         diag = list()
         for c in RADLEX_incl:
-            diag.append(RAD2L[c])
+            if c == 'RID4226':
+                diag.append('35917007')
+            else:
+                diag.append(RAD2L[c])
         #print(diag)
         
+        url = "http://hackathon.siim.org/fhir/DiagnosticReport"
+
+        querystring = {"diagnosis":diag}
+
+        headers = {
+            'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+            'Cache-Control': "no-cache",
+            'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
+            }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
+        print(response.text)
+                
         age1 = self.patient_range_year1.get()
         age2 = self.patient_range_year2.get()
         age_range = [age1,age2]
@@ -434,7 +452,7 @@ class New_Toplevel:
         self.modality_box.configure(width=462)
         self.modality_box.configure(takefocus="")
         self.modality_box['values'] = ('CT','XR','PET','US','NM','MR','XA','CR','DR','FL')
-        
+        self.modality_box.current(0)
         #v_m = (self.root.register(self.validate_month),'%S')
 
         self.start_month = ttk.Combobox(self.Study_tab)
