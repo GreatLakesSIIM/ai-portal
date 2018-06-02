@@ -115,6 +115,7 @@ class New_Toplevel:
             self.Diag_box.insert('end',i)
         return True
 
+<<<<<<< HEAD
     def Preview_dataset():
         print('Previewing Dataset...')
 
@@ -123,6 +124,8 @@ class New_Toplevel:
 
     def Get_DICOM_images():
         print("Getting DICOM images...")
+=======
+>>>>>>> 53b4afc3b7fd31e39f263edc31602250254e5a7c
     
     def __init__(self, top=None):
         #spacing variables
