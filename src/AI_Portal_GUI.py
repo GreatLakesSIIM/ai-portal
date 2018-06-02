@@ -116,13 +116,13 @@ class New_Toplevel:
         return True
 
     def Preview_dataset():
-        print('Previewing Dataset')
+        print('Previewing Dataset...')
 
     def Submit_query():
-        print('submitting query')
+        print('Submitting query...')
 
     def Get_DICOM_images():
-        print("getting DICOM images")
+        print("Getting DICOM images...")
     
     def __init__(self, top=None):
         #spacing variables
