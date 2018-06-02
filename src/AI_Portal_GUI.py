@@ -293,8 +293,15 @@ class New_Toplevel:
                                 if (gggchild.tag == '{http://hl7.org/fhir}id'):
                                     id_list.append(gggchild.attrib['value'])
             for ids in id_list:
-                print(ids)
-            
+                url = "http://hackathon.siim.org/fhir/ImagingStudy/" + str(ids)
+                headers = {
+                    'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                    'Cache-Control': "no-cache",
+                    'Postman-Token': "80321743-f572-4dff-a203-399e165fc887",
+                    'accept': "text/xml"
+                    }
+                response = requests.request("GET", url, headers=headers)
+                print(response.text)
             
         age1 = self.patient_range_year1.get()
         age2 = self.patient_range_year2.get()
