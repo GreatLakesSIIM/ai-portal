@@ -281,17 +281,17 @@ class New_Toplevel:
                 'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342",
                 'accept': "text/xml"
                 }
-        if(diag):
-            id_list = list()
-            response = requests.request("GET", url, headers=headers, params=querystring)
-            diagnostic_reports = et.fromstring(response.text)
-            for child in diagnostic_reports:
-                for gchild in child:
-                    if (gchild.tag == '{http://hl7.org/fhir}resource'):
-                        for ggchild in gchild:
-                            for gggchild in ggchild:
-                                if (gggchild.tag == '{http://hl7.org/fhir}id'):
-                                    id_list.append(gggchild.attrib['value'])
+            if(diag):
+                id_list = list()
+                response = requests.request("GET", url, headers=headers, params=querystring)
+                diagnostic_reports = et.fromstring(response.text)
+                for child in diagnostic_reports:
+                    for gchild in child:
+                        if (gchild.tag == '{http://hl7.org/fhir}resource'):
+                            for ggchild in gchild:
+                                for gggchild in ggchild:
+                                    if (gggchild.tag == '{http://hl7.org/fhir}id'):
+                                        id_list.append(gggchild.attrib['value'])
             for ids in id_list:
                 url = "http://hackathon.siim.org/fhir/ImagingStudy/" + str(ids)
                 headers = {
@@ -303,56 +303,56 @@ class New_Toplevel:
                 response = requests.request("GET", url, headers=headers)
                 print(response.text)
             
-        age1 = self.patient_range_year1.get()
-        age2 = self.patient_range_year2.get()
-        age_range = [age1,age2]
-        #print(age_range)
-            
-        sex = list()
-        if(AI_Portal_GUI_support.sex_select.get()):
-            sex.append("male,female,unkown,other")
-            
-        else:
+            age1 = self.patient_range_year1.get()
+            age2 = self.patient_range_year2.get()
+            age_range = [age1,age2]
+            #print(age_range)
+                
+            sex = list()
             if(AI_Portal_GUI_support.sex_select.get()):
-                sex.append('female')
-            if(AI_Portal_GUI_support.sex_select.get()):
-                sex.append('male')
-            if(AI_Portal_GUI_support.sex_select.get()):
-                sex.append('other')
-                                
-        url = "http://hackathon.siim.org/fhir/Patient"
+                sex.append("male,female,unkown,other")
+                
+            else:
+                if(AI_Portal_GUI_support.sex_select.get()):
+                    sex.append('female')
+                if(AI_Portal_GUI_support.sex_select.get()):
+                    sex.append('male')
+                if(AI_Portal_GUI_support.sex_select.get()):
+                    sex.append('other')
+                                    
+            url = "http://hackathon.siim.org/fhir/Patient"
 
-        querystring = {"gender":sex}
+            querystring = {"gender":sex}
 
-        headers = {
-            'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
-            'Cache-Control': "no-cache",
-            'Postman-Token': "689e0400-7249-4ca9-95d2-40cfdc764c3e",
-            'accept': "text/xml"
-            }
-        if (sex):
-            response = requests.request("GET", url, headers=headers, params=querystring)
-            patients = et.fromstring(response.text)
-            
-            smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
-            AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
-            #print(sex)
-            #print(smoke)
-            
-            race = self.Patient_ethn_box.get()
-            #print(race)
-            
-            num_studies = self.max_studies.get()
-            source = self.Retrieve_src.get()
-            #print(num_studies)
-            #print(source)
-            
-            reports = AI_Portal_GUI_support.get_reports.get()
-            only_reports = AI_Portal_GUI_support.get_only_reports.get()
-            rpid = AI_Portal_GUI_support.research_PID.get()
-            #print(reports)
-            #print(only_reports)
-            #print(rpid)
+            headers = {
+                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                'Cache-Control': "no-cache",
+                'Postman-Token': "689e0400-7249-4ca9-95d2-40cfdc764c3e",
+                'accept': "text/xml"
+                }
+            if (sex):
+                response = requests.request("GET", url, headers=headers, params=querystring)
+                patients = et.fromstring(response.text)
+                
+                smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
+                AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
+                #print(sex)
+                #print(smoke)
+                
+                race = self.Patient_ethn_box.get()
+                #print(race)
+                
+                num_studies = self.max_studies.get()
+                source = self.Retrieve_src.get()
+                #print(num_studies)
+                #print(source)
+                
+                reports = AI_Portal_GUI_support.get_reports.get()
+                only_reports = AI_Portal_GUI_support.get_only_reports.get()
+                rpid = AI_Portal_GUI_support.research_PID.get()
+                #print(reports)
+                #print(only_reports)
+                #print(rpid)
         else:
             if(self.alt_query_url.get()):
                 headers = {
