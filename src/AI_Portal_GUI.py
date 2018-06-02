@@ -263,50 +263,6 @@ class New_Toplevel:
             AI_Portal_GUI_support.crit3.get()]
             #print(crit_results)
             
-            diag = list()
-            for c in RADLEX_incl:
-                if c == 'RID4226':
-                    diag.append('35917007')
-                else:
-                    diag.append(RAD2L[c])
-            #print(diag)
-            
-            url = "http://hackathon.siim.org/fhir/DiagnosticReport"
-
-            querystring = {"diagnosis":diag}
-
-            headers = {
-                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
-                'Cache-Control': "no-cache",
-                'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342",
-                'accept': "text/xml"
-                }
-            if(diag):
-                id_list = list()
-                response = requests.request("GET", url, headers=headers, params=querystring)
-                diagnostic_reports = et.fromstring(response.text)
-                for child in diagnostic_reports:
-                    for gchild in child:
-                        if (gchild.tag == '{http://hl7.org/fhir}resource'):
-                            for ggchild in gchild:
-                                for gggchild in ggchild:
-                                    if (gggchild.tag == '{http://hl7.org/fhir}id'):
-                                        id_list.append(gggchild.attrib['value'])
-            for ids in id_list:
-                url = "http://hackathon.siim.org/fhir/ImagingStudy/" + str(ids)
-                headers = {
-                    'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
-                    'Cache-Control': "no-cache",
-                    'Postman-Token': "80321743-f572-4dff-a203-399e165fc887",
-                    'accept': "text/xml"
-                    }
-                response = requests.request("GET", url, headers=headers)
-                print(response.text)
-            
-            foundMessage = 'Query found ' + str(len(id_list)) + ' related DICOM images'
-            print(foundMessage)
-            self.num_images_label.configure(text=foundMessage)
-            
             age1 = self.patient_range_year1.get()
             age2 = self.patient_range_year2.get()
             age_range = [age1,age2]
@@ -337,7 +293,7 @@ class New_Toplevel:
             if (sex):
                 response = requests.request("GET", url, headers=headers, params=querystring)
                 patients = et.fromstring(response.text)
-                
+                print(response.text)
                 smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
                 AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
                 #print(sex)
@@ -357,6 +313,66 @@ class New_Toplevel:
                 #print(reports)
                 #print(only_reports)
                 #print(rpid)
+            
+            diag = list()
+            for c in RADLEX_incl:
+                if c == 'RID4226':
+                    diag.append('35917007')
+                else:
+                    diag.append(RAD2L[c])
+            #print(diag)
+            
+            url = "http://hackathon.siim.org/fhir/DiagnosticReport"
+
+            querystring = {"diagnosis":diag}
+
+            headers = {
+                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                'Cache-Control': "no-cache",
+                'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342",
+                'accept': "text/xml"
+                }
+            if(diag):
+                id_list = list()
+                
+                response = requests.request("GET", url, headers=headers, params=querystring)
+                diagnostic_reports = et.fromstring(response.text)
+                print(response.text)
+                for child in diagnostic_reports:
+                    for gchild in child:
+                        if (gchild.tag == '{http://hl7.org/fhir}resource'):
+                            for ggchild in gchild:
+                                for gggchild in ggchild:
+                                    if (gggchild.tag == '{http://hl7.org/fhir}id'):
+                                        id_list.append(gggchild.attrib['value'])
+                                        print('ImageingStudy/DiagnosticReport: ' + gggchild.attrib['value'])
+            for ids in id_list:
+                url = "http://hackathon.siim.org/fhir/ImagingStudy/" + str(ids)
+                headers = {
+                    'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                    'Cache-Control': "no-cache",
+                    'Postman-Token': "80321743-f572-4dff-a203-399e165fc887",
+                    'accept': "text/xml"
+                    }
+                response = requests.request("GET", url, headers=headers)
+                image_studies = et.fromstring(response.text)
+                for child in image_studies:
+                    if (child.tag == '{http://hl7.org/fhir}uid'):
+                        uid_arr = child.attrib['value'].split(':')
+                        print('Image UID: ' + uid_arr[2])
+                        url = "http://hackathon.siim.org/dicom-web/studies/" + uid_arr[2]
+                        headers = {
+                        'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                        'Cache-Control': "no-cache",
+                        'Postman-Token': "8d387369-2a8a-4d05-83b3-dbcc8def0ecf"
+                        }
+                        response = requests.request("GET", url, headers=headers)
+                        print(response.text)
+#                print(response.text)
+            foundMessage = 'Query found ' + str(len(id_list)) + ' related DICOM images'
+            print(foundMessage)
+            self.num_images_label.configure(text=foundMessage)
+            
         
         # if a alternative url is present
         else:
