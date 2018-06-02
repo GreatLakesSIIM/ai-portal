@@ -271,8 +271,6 @@ class New_Toplevel:
     def Get_DICOM_images(self):
         print("Getting DICOM images...")
 
-    
->>>>>>> f8d7e578ea362323688272e6295fd9f769c2228e
     def __init__(self, top=None):
         #spacing variables
         leftMargin = 0.015
