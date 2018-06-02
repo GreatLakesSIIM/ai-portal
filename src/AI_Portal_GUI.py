@@ -330,13 +330,14 @@ class New_Toplevel:
             #print(only_reports)
             #print(rpid)
         else:
-            headers = {
-                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
-                'Cache-Control': "no-cache",
-                'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
-                }
-            response = requests.request("GET", self.alt_query_url.get(), headers=headers)
-            print(response.text)
+            if(self.alt_query_url.get()):
+                headers = {
+                    'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                    'Cache-Control': "no-cache",
+                    'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
+                    }
+                response = requests.request("GET", self.alt_query_url.get(), headers=headers)
+                print(response.text)
         
 
     def Get_DICOM_images(self):
