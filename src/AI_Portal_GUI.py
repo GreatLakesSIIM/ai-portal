@@ -231,79 +231,88 @@ class New_Toplevel:
 
     def Submit_query(self):
         print('Submitting query...')
-        modality = self.modality_box.get()
-        #print(modality)
-        
-        day_start = self.start_day.get()
-        month_start = self.start_month.get()
-        year_start = self.start_year.get()
-        date_start = [day_start,month_start,year_start]
-        #print(date_start)
-        proc_codes = list()
-        for c in playbook_incl:
-            proc_codes.append(RPID2L[c])
-        #print(proc_codes)
-        findings = self.findings_cont.get()
-        impressions = self.impressions_cont.get()
-        #print(findings)
-        #print(impressions)
-        
-        recommendations = self.rec_box.get()
-        #print(recommendations)
-        
-        crit_results = [AI_Portal_GUI_support.crit.get(),AI_Portal_GUI_support.crit2.get(),
-        AI_Portal_GUI_support.crit3.get()]
-        #print(crit_results)
-        
-        diag = list()
-        for c in RADLEX_incl:
-            if c == 'RID4226':
-                diag.append('35917007')
-            else:
-                diag.append(RAD2L[c])
-        #print(diag)
-        
-        url = "http://hackathon.siim.org/fhir/DiagnosticReport"
+        if not self.alt_query_url.get():
+            modality = self.modality_box.get()
+            #print(modality)
+            
+            day_start = self.start_day.get()
+            month_start = self.start_month.get()
+            year_start = self.start_year.get()
+            date_start = [day_start,month_start,year_start]
+            #print(date_start)
+            proc_codes = list()
+            for c in playbook_incl:
+                proc_codes.append(RPID2L[c])
+            #print(proc_codes)
+            findings = self.findings_cont.get()
+            impressions = self.impressions_cont.get()
+            #print(findings)
+            #print(impressions)
+            
+            recommendations = self.rec_box.get()
+            #print(recommendations)
+            
+            crit_results = [AI_Portal_GUI_support.crit.get(),AI_Portal_GUI_support.crit2.get(),
+            AI_Portal_GUI_support.crit3.get()]
+            #print(crit_results)
+            
+            diag = list()
+            for c in RADLEX_incl:
+                if c == 'RID4226':
+                    diag.append('35917007')
+                else:
+                    diag.append(RAD2L[c])
+            #print(diag)
+            
+            url = "http://hackathon.siim.org/fhir/DiagnosticReport"
 
-        querystring = {"diagnosis":diag}
+            querystring = {"diagnosis":diag}
 
-        headers = {
-            'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
-            'Cache-Control': "no-cache",
-            'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
-            }
+            headers = {
+                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                'Cache-Control': "no-cache",
+                'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
+                }
 
-        response = requests.request("GET", url, headers=headers, params=querystring)
+            response = requests.request("GET", url, headers=headers, params=querystring)
 
-        print(response.text)
-                
-        age1 = self.patient_range_year1.get()
-        age2 = self.patient_range_year2.get()
-        age_range = [age1,age2]
-        #print(age_range)
-        
-        sex = [AI_Portal_GUI_support.sex_select.get(),AI_Portal_GUI_support.sex_select2.get(),
-        AI_Portal_GUI_support.sex_select3.get(),AI_Portal_GUI_support.sex_select4.get()]
-        
-        smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
-        AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
-        #print(sex)
-        #print(smoke)
-        
-        race = self.Patient_ethn_box.get()
-        #print(race)
-        
-        num_studies = self.max_studies.get()
-        source = self.Retrieve_src.get()
-        #print(num_studies)
-        #print(source)
-        
-        reports = AI_Portal_GUI_support.get_reports.get()
-        only_reports = AI_Portal_GUI_support.get_only_reports.get()
-        rpid = AI_Portal_GUI_support.research_PID.get()
-        #print(reports)
-        #print(only_reports)
-        #print(rpid)
+            print(response.text)
+                    
+            age1 = self.patient_range_year1.get()
+            age2 = self.patient_range_year2.get()
+            age_range = [age1,age2]
+            #print(age_range)
+            
+            sex = [AI_Portal_GUI_support.sex_select.get(),AI_Portal_GUI_support.sex_select2.get(),
+            AI_Portal_GUI_support.sex_select3.get(),AI_Portal_GUI_support.sex_select4.get()]
+            
+            smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
+            AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
+            #print(sex)
+            #print(smoke)
+            
+            race = self.Patient_ethn_box.get()
+            #print(race)
+            
+            num_studies = self.max_studies.get()
+            source = self.Retrieve_src.get()
+            #print(num_studies)
+            #print(source)
+            
+            reports = AI_Portal_GUI_support.get_reports.get()
+            only_reports = AI_Portal_GUI_support.get_only_reports.get()
+            rpid = AI_Portal_GUI_support.research_PID.get()
+            #print(reports)
+            #print(only_reports)
+            #print(rpid)
+        else:
+            headers = {
+                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                'Cache-Control': "no-cache",
+                'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
+                }
+            response = requests.request("GET", self.alt_query_url.get(), headers=headers)
+            print(response.text)
         
 
     def Get_DICOM_images(self):
@@ -1093,14 +1102,28 @@ class New_Toplevel:
         self.download_instructions = Label(self.Download_tab, text = 'When you are satisfied with your selections, preview the data set and then sumbit the query')
         self.download_instructions.place(relx=0.15, rely=0.1, relheight=0.05, relwidth = 0.7)
 
-        self.preview_button = Button(self.Download_tab, text = 'Preview Dataset', command=lambda: New_Toplevel.Preview_dataset(self))
-        self.preview_button.place(relx=0.4, rely=0.2, relheight=0.05, relwidth = 0.2)
+        self.preview_button = Button(self.Download_tab, text = 'Preview Query', command=lambda: New_Toplevel.Preview_dataset(self))
+        self.preview_button.place(relx=0.25, rely=0.2, relheight=0.05, relwidth = 0.2)
 
         self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command=lambda: New_Toplevel.Submit_query(self))
-        self.submit_query_button.place(relx=0.4, rely=0.35, relheight=0.05, relwidth = 0.2)
+        self.submit_query_button.place(relx=0.25, rely=0.35, relheight=0.05, relwidth = 0.2)
 
+        self.query_label = Label(self.Download_tab, text = 'Alternate Query URL', anchor='w')
+        self.query_label.place(relx=0.25, rely=0.5, height=labelHeight, width=120)
+        self.query_label.configure(activebackground="#f9f9f9")
+        self.query_label.configure(activeforeground="black")
+        self.query_label.configure(background="#d9d9d9")
+        self.query_label.configure(disabledforeground="#a3a3a3")
+        self.query_label.configure(foreground="#000000")
+        self.query_label.configure(highlightbackground="#d9d9d9")
+        self.query_label.configure(highlightcolor="black")
+        self.query_label.configure(justify=CENTER)
+
+        self.alt_query_url = Entry(self.Download_tab)
+        self.alt_query_url.place(relx=0.35, rely=0.5, height=labelHeight, relwidth = 0.4)
+        
         self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command=lambda: New_Toplevel.Get_DICOM_images(self))
-        self.get_dicom_button.place(relx=0.4, rely=0.5, relheight=0.05, relwidth = 0.2)
+        self.get_dicom_button.place(relx=0.25, rely=0.65, relheight=0.05, relwidth = 0.2)
 
 # The following code is added to facilitate the Scrolled widgets you specified.
 class AutoScroll(object):
