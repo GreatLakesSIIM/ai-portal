@@ -272,16 +272,17 @@ class New_Toplevel:
             headers = {
                 'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
                 'Cache-Control': "no-cache",
-                'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
+                'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342",
+                'accept': "text/xml"
                 }
         if(diag):
             response = requests.request("GET", url, headers=headers, params=querystring)
-            print(response.text)
-                    
-            age1 = self.patient_range_year1.get()
-            age2 = self.patient_range_year2.get()
-            age_range = [age1,age2]
-            #print(age_range)
+            diagnostic_reports = et.fromstring(response.text)
+            
+        age1 = self.patient_range_year1.get()
+        age2 = self.patient_range_year2.get()
+        age_range = [age1,age2]
+        #print(age_range)
             
         sex = list()
         if(AI_Portal_GUI_support.sex_select.get()):
@@ -302,14 +303,13 @@ class New_Toplevel:
         headers = {
             'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
             'Cache-Control': "no-cache",
-            'Postman-Token': "689e0400-7249-4ca9-95d2-40cfdc764c3e"
+            'Postman-Token': "689e0400-7249-4ca9-95d2-40cfdc764c3e",
+            'accept': "text/xml"
             }
         if (sex):
             response = requests.request("GET", url, headers=headers, params=querystring)
-            
             patients = et.fromstring(response.text)
-            print(patients)
-        
+            
             smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
             AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
             #print(sex)
