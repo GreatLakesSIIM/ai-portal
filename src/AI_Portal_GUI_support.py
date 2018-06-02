@@ -43,12 +43,12 @@ def set_Tk_var():
     spinbox7 = StringVar()
     global spinbox8
     spinbox8 = StringVar()
-    global tch95
-    tch95 = StringVar()
-    global tch95_2
-    tch95_2 = StringVar()
-    global tch95_3
-    tch95_3 = StringVar()
+    global crit
+    crit = StringVar()
+    global crit2
+    crit2 = StringVar()
+    global crit3
+    crit3 = StringVar()
     global sex_select
     sex_select = StringVar()
     global sex_select2
