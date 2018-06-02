@@ -115,7 +115,6 @@ class New_Toplevel:
             self.Diag_box.insert('end',i)
         return True
 
-<<<<<<< HEAD
     def Preview_dataset():
         print('Previewing Dataset...')
 
@@ -124,8 +123,16 @@ class New_Toplevel:
 
     def Get_DICOM_images():
         print("Getting DICOM images...")
-=======
->>>>>>> 53b4afc3b7fd31e39f263edc31602250254e5a7c
+
+        def Preview_dataset(self):
+        print('Previewing Dataset')
+
+
+    def Submit_query(self):
+        print('submitting query')
+
+    def Get_DICOM_images(self):
+        print("getting DICOM images")
     
     def __init__(self, top=None):
         #spacing variables
@@ -900,13 +907,13 @@ class New_Toplevel:
         self.download_instructions = Label(self.Download_tab, text = 'When you are satisfied with your selections, preview the data set and then sumbit the query')
         self.download_instructions.place(relx=0.15, rely=0.1, relheight=0.05, relwidth = 0.7)
 
-        self.preview_button = Button(self.Download_tab, text = 'Preview Dataset', command = New_Toplevel.Preview_dataset)
+        self.preview_button = Button(self.Download_tab, text = 'Preview Dataset', command=lambda: New_Toplevel.Preview_dataset(self))
         self.preview_button.place(relx=0.4, rely=0.2, relheight=0.05, relwidth = 0.2)
 
-        self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command = New_Toplevel.Submit_query)
+        self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command=lambda: New_Toplevel.Submit_query(self))
         self.submit_query_button.place(relx=0.4, rely=0.35, relheight=0.05, relwidth = 0.2)
 
-        self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command = New_Toplevel.Get_DICOM_images)
+        self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command=lambda: New_Toplevel.Get_DICOM_images(self))
         self.get_dicom_button.place(relx=0.4, rely=0.5, relheight=0.05, relwidth = 0.2)
 
 # The following code is added to facilitate the Scrolled widgets you specified.
