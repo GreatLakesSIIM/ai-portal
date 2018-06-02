@@ -67,19 +67,24 @@ global RADLEX_incl
 RADLEX_incl = list()
 
 global RADLEX
+RADLEX = dict()
+
+global playbook
+playbook = dict()
 
 class New_Toplevel:
     def AddProc(self):
         s = self.Procedure_box.curselection()
+        g = self.Procedure_box.get(0,END)
         for i in s:
-            self.Procedure_box_selected.insert('end',playbook_lut[i])
-            playbook_incl.append(playbook_lut_num[i])
-            print(playbook_lut_num[i])
+            self.Procedure_box_selected.insert('end',g[i])
+            playbook_incl.append(playbook[g[i]])
             
     def DelProc(self):
         s = self.Procedure_box_selected.curselection()
         for i in reversed(s):
             self.Procedure_box_selected.delete(i)
+            playbook_incl.delete(i)
     
     def Proc_Filter(self):
         match = [ s for s in playbook_lut if self.Proc_search.get().upper() in s.upper() ]
@@ -92,15 +97,16 @@ class New_Toplevel:
         
     def AddDiag(self):
         s = self.Diag_box.curselection()
+        g = self.Diag_box.get(0,END)
         for i in s:
-            self.Diag_box_selected.insert('end',RADLEX_lut[i])
-            RADLEX_incl.append(RADLEX_lut_num[i])
-            print(RADLEX_lut_num[i])
+            self.Diag_box_selected.insert('end',g[i])
+            RADLEX_incl.append(RADLEX[g[i]])
             
     def DelDiag(self):
         s = self.Diag_box_selected.curselection()
         for i in reversed(s):
             self.Diag_box_selected.delete(i)
+            RADLEX_incl.delete(i)
     
     def Diag_Filter(self):
         match = [ s for s in RADLEX_lut if self.Diag_search.get().upper() in s.upper() ]
@@ -152,8 +158,8 @@ class New_Toplevel:
                     playbook_lut.append(row[4])
                     playbook_lut_num.append(row[0])
 
-        RADLEX = dict(zip(RADLEX_lut,RADLEX_lut_num))
-        playbook = dict(zip(playbook_lut,playbook_lut_num))
+        RADLEX.update(zip(RADLEX_lut,RADLEX_lut_num))
+        playbook.update(zip(playbook_lut,playbook_lut_num))
         self.menubar = Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
         top.configure(menu = self.menubar)
 
@@ -875,9 +881,6 @@ class New_Toplevel:
         self.rpid_no.configure(text='''No''')
         self.rpid_no.configure(variable=AI_Portal_GUI_support.research_PID)
         self.rpid_yes.select()
-        
-    def validate_month(ch):
-        print(ch)
 
 
 # The following code is added to facilitate the Scrolled widgets you specified.
