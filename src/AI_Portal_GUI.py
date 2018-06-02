@@ -124,7 +124,7 @@ class New_Toplevel:
     def Get_DICOM_images():
         print("Getting DICOM images...")
 
-        def Preview_dataset(self):
+    def Preview_dataset(self):
         print('Previewing Dataset')
 
 
