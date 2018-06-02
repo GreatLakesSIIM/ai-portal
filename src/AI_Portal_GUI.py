@@ -73,8 +73,20 @@ RADLEX = dict()
 global playbook
 playbook = dict()
 
+global RAD2L_lut_LOINC
+RAD2L_lut_LOINC = list()
+
+global RAD2L_lut_RAD
+RAD2L_lut_RAD = list()
+
+global RAD2L_lut_RPID
+RAD2L_lut_RPID = list()
+
 global RAD2L
 RAD2L = dict()
+
+global RPID2L
+RPID2L = dict()
 
 class New_Toplevel:
     def AddProc(self):
@@ -88,7 +100,8 @@ class New_Toplevel:
         s = self.Procedure_box_selected.curselection()
         for i in reversed(s):
             self.Procedure_box_selected.delete(i)
-            playbook_incl.delete(i)
+            print(i)
+            #playbook_incl.remove(i)
 
     def Proc_Filter(self):
         match = [ s for s in playbook_lut if self.Proc_search.get().upper() in s.upper() ]
@@ -110,7 +123,7 @@ class New_Toplevel:
         s = self.Diag_box_selected.curselection()
         for i in reversed(s):
             self.Diag_box_selected.delete(i)
-            RADLEX_incl.delete(i)
+            RADLEX_incl.remove(i)
 
     def Diag_Filter(self):
         match = [ s for s in RADLEX_lut if self.Diag_search.get().upper() in s.upper() ]
@@ -223,8 +236,10 @@ class New_Toplevel:
         year_start = self.start_year.get()
         date_start = [day_start,month_start,year_start]
         #print(date_start)
-        
-        proc_codes = playbook_incl
+        proc_codes = list()
+        for c in playbook_incl:
+            proc_codes.append(RPID2L[c])
+        print(proc_codes)
         findings = self.findings_cont.get()
         impressions = self.impressions_cont.get()
         #print(findings)
@@ -237,7 +252,10 @@ class New_Toplevel:
         AI_Portal_GUI_support.crit3.get()]
         #print(crit_results)
         
-        diag = RADLEX_incl
+        diag = list()
+        for c in RADLEX_incl:
+            diag.append(RAD2L[c])
+        print(diag)
         
         age1 = self.patient_range_year1.get()
         age2 = self.patient_range_year2.get()
@@ -320,8 +338,10 @@ class New_Toplevel:
                 if row[0] != 'LoincNumber':
                     RAD2L_lut_LOINC.append(row[0])
                     RAD2L_lut_RAD.append(row[6])
+                    RAD2L_lut_RPID.append(row[8])
         
         RAD2L.update(zip(RAD2L_lut_RAD,RAD2L_lut_LOINC))          
+        RPID2L.update(zip(RAD2L_lut_RPID,RAD2L_lut_LOINC))
         RADLEX.update(zip(RADLEX_lut,RADLEX_lut_num))
         playbook.update(zip(playbook_lut,playbook_lut_num))
         self.menubar = Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
