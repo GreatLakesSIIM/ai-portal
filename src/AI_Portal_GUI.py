@@ -9,6 +9,7 @@ import sys
 import os
 import csv
 import requests
+import xml.etree.ElementTree as et
 
 try:
     from Tkinter import *
@@ -302,10 +303,11 @@ class New_Toplevel:
             'Cache-Control': "no-cache",
             'Postman-Token': "689e0400-7249-4ca9-95d2-40cfdc764c3e"
             }
-
-        response = requests.request("GET", url, headers=headers, params=querystring)
-
-        print(response.text)
+        if (sex):
+            response = requests.request("GET", url, headers=headers, params=querystring)
+            
+            patients = et.fromstring(response.text)
+            print(patients)
         
         smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
         AI_Portal_GUI_support.smoke_select3.get(),AI_Portal_GUI_support.smoke_select4.get()]
