@@ -303,6 +303,10 @@ class New_Toplevel:
                 response = requests.request("GET", url, headers=headers)
                 print(response.text)
             
+            foundMessage = 'Query found ' + str(len(id_list)) + ' related DICOM images'
+            print(foundMessage)
+            self.num_images_label.configure(text=foundMessage)
+            
             age1 = self.patient_range_year1.get()
             age2 = self.patient_range_year2.get()
             age_range = [age1,age2]
@@ -353,6 +357,8 @@ class New_Toplevel:
                 #print(reports)
                 #print(only_reports)
                 #print(rpid)
+        
+        # if a alternative url is present
         else:
             if(self.alt_query_url.get()):
                 headers = {
@@ -1156,6 +1162,13 @@ class New_Toplevel:
 
         self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command=lambda: New_Toplevel.Submit_query(self))
         self.submit_query_button.place(relx=0.25, rely=0.35, relheight=0.05, relwidth = 0.2)
+
+        self.num_images_label = Label(self.Download_tab, anchor='w')
+        self.num_images_label.place(relx=.27, rely=0.4, height=labelHeight, relwidth=0.4)
+        self.num_images_label.configure(background="#d9d9d9")
+        self.num_images_label.configure(disabledforeground="#a3a3a3")
+        self.num_images_label.configure(foreground="#000000")
+        self.num_images_label.configure(text='')
 
         self.query_label = Label(self.Download_tab, text = 'Alternate Query URL', anchor='w')
         self.query_label.place(relx=0.25, rely=0.5, height=labelHeight, width=120)
