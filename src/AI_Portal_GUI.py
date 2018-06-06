@@ -436,6 +436,7 @@ class AI_Portal:
         print('Please do not exit program.')
         for obj in self.DICOM_ims_to_find:
             counter = counter + 1
+            print('Getting image ' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.') 
             url = "http://hackathon.siim.org/dicom-web/studies/" + obj
             headers = {
             'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
@@ -444,13 +445,13 @@ class AI_Portal:
             }
             try:
                 response = requests.request("GET", url, headers=headers)
-                print(response.text)
+                #print(response.text)
             except:
                 print('Something went wrong getting DICOM image' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.')
 
         # This should probably be forked in order to appear as though the GUI
         # has not crashed. 
-    def Get_DICOM_images(self):
+    def Get_DICOM_images(self): 
         thread.Thread(target=self.get_DICOMS).start()
         
     def __init__(self, top=None):
