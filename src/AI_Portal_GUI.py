@@ -10,6 +10,8 @@ import os
 import csv
 import requests
 import xml.etree.ElementTree as et
+import threading as thread
+
 try:
     from Tkinter import *
 except ImportError:
@@ -30,22 +32,22 @@ def vp_start_gui():
     global val, w, root
     root = Tk()
     AI_Portal_GUI_support.set_Tk_var()
-    top = New_Toplevel (root)
+    top = AI_Portal (root)
     AI_Portal_GUI_support.init(root, top)
     root.mainloop()
 
 w = None
-def create_New_Toplevel(root, *args, **kwargs):
+def create_AI_Portal(root, *args, **kwargs):
     '''Starting point when module is imported by another program.'''
     global w, w_win, rt
     rt = root
     w = Toplevel (root)
     AI_Portal_GUI_support.set_Tk_var()
-    top = New_Toplevel (w)
+    top = AI_Portal (w)
     AI_Portal_GUI_support.init(w, top, *args, **kwargs)
     return (w, top)
 
-def destroy_New_Toplevel():
+def destroy_AI_Portal():
     global w
     w.destroy()
     w = None
@@ -89,7 +91,7 @@ RAD2L = dict()
 global RPID2L
 RPID2L = dict()
 
-class New_Toplevel:
+class AI_Portal:
     def getText(nodelist):
         rc = []
         for node in nodelist:
@@ -122,18 +124,34 @@ class New_Toplevel:
         return True
 
     def AddDiag(self):
+        skip = False
         s = self.Diag_box.curselection()
         g = self.Diag_box.get(0,END)
+        existing = self.Diag_box_selected.get(0,END)
+        print(existing)
         for i in s:
-            self.Diag_box_selected.insert('end',g[i])
-            RADLEX_incl.append(RADLEX[g[i]])
+            if (existing):
+                for e in existing:
+                    if ((g[i] == e)):
+                        print(g[i] + ' already selected.')
+                        skip = True
+                if(not skip):
+                    self.Diag_box_selected.insert('end',g[i])
+                    RADLEX_incl.append(RADLEX[g[i]]) 
+                skip = False
+            else:          
+                self.Diag_box_selected.insert('end',g[i])
+                RADLEX_incl.append(RADLEX[g[i]])
+        print(RADLEX_incl)
 
     def DelDiag(self):
         s = self.Diag_box_selected.curselection()
         for i in reversed(s):
             self.Diag_box_selected.delete(i)
             RADLEX_incl.pop(i)
-            RADLEX_incl.remove(i)
+            # RADLEX_incl.remove(i)
+        print(RADLEX_incl)
+
 
     def Diag_Filter(self):
         match = [ s for s in RADLEX_lut if self.Diag_search.get().upper() in s.upper() ]
@@ -291,7 +309,11 @@ class New_Toplevel:
                 'accept': "text/xml"
                 }
             if (sex):
-                response = requests.request("GET", url, headers=headers, params=querystring)
+                try:
+                    response = requests.request("GET", url, headers=headers, params=querystring)
+                except:
+                    print('Something went wrong extracting the Patient resources.')
+                    
                 patients = et.fromstring(response.text)
                 print(response.text)
                 smoke = [AI_Portal_GUI_support.smoke_select.get(),AI_Portal_GUI_support.smoke_select2.get(),
@@ -335,17 +357,22 @@ class New_Toplevel:
             if(diag):
                 id_list = list()
                 
-                response = requests.request("GET", url, headers=headers, params=querystring)
-                diagnostic_reports = et.fromstring(response.text)
-                print(response.text)
-                for child in diagnostic_reports:
-                    for gchild in child:
-                        if (gchild.tag == '{http://hl7.org/fhir}resource'):
-                            for ggchild in gchild:
-                                for gggchild in ggchild:
-                                    if (gggchild.tag == '{http://hl7.org/fhir}id'):
-                                        id_list.append(gggchild.attrib['value'])
-                                        print('ImagingStudy/DiagnosticReport: ' + gggchild.attrib['value'])
+                try:
+                    response = requests.request("GET", url, headers=headers, params=querystring)
+                    
+                    diagnostic_reports = et.fromstring(response.text)
+                    print(response.text)
+                    for child in diagnostic_reports:
+                        for gchild in child:
+                            if (gchild.tag == '{http://hl7.org/fhir}resource'):
+                                for ggchild in gchild:
+                                    for gggchild in ggchild:
+                                        if (gggchild.tag == '{http://hl7.org/fhir}id'):
+                                            id_list.append(gggchild.attrib['value'])
+                                            print('ImagingStudy/DiagnosticReport: ' + gggchild.attrib['value'])
+                except:
+                    print('Something went wrong extracting the DiagnosticReport resources.')
+            self.DICOM_ims_to_find = list()        
             for ids in id_list:
                 url = "http://hackathon.siim.org/fhir/ImagingStudy/" + str(ids)
                 headers = {
@@ -354,23 +381,37 @@ class New_Toplevel:
                     'Postman-Token': "80321743-f572-4dff-a203-399e165fc887",
                     'accept': "text/xml"
                     }
-                response = requests.request("GET", url, headers=headers)
+                try:
+                    response = requests.request("GET", url, headers=headers)
+                except:
+                    print('Something went wrong getting the ImagingStudy resources.')
+                    
                 image_studies = et.fromstring(response.text)
-                print('Query found DICOM 4 images.')
+                counter=1
                 for child in image_studies:
                     if (child.tag == '{http://hl7.org/fhir}uid'):
+                        counter = counter + 1
                         uid_arr = child.attrib['value'].split(':')
                         print('Image UID: ' + uid_arr[2])
+                        self.DICOM_ims_to_find.append(uid_arr[2])
                         url = "http://hackathon.siim.org/dicom-web/studies/" + uid_arr[2]
                         headers = {
                         'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
                         'Cache-Control': "no-cache",
                         'Postman-Token': "8d387369-2a8a-4d05-83b3-dbcc8def0ecf"
                         }
-                        response = requests.request("GET", url, headers=headers)
-                        print(response.text)
+                        
+                        try:
+                            print('DICOM')
+                            #response = requests.request("GET", url, headers=headers)
+                            #print(response.text)
+                        except:
+                            print('Something went wrong getting DICOM image' + str(counter) + ' of ' + str(len(id_list)) + '.')
 #                print(response.text)
-            foundMessage = 'Query found ' + str(len(id_list)) + ' related DICOM images'
+            for a in self.DICOM_ims_to_find:
+                print(a)
+            self.DICOM_studies_found = len(id_list)
+            foundMessage = 'Query found ' + str(len(id_list)) + ' related DICOM images.'
             print(foundMessage)
             self.num_images_label.configure(text=foundMessage)
             
@@ -383,13 +424,35 @@ class New_Toplevel:
                     'Cache-Control': "no-cache",
                     'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
                     }
-                response = requests.request("GET", self.alt_query_url.get(), headers=headers)
+                try:
+                    response = requests.request("GET", self.alt_query_url.get(), headers=headers)
+                    print(response.text)
+                except:
+                    print('Alternate query failed.')        
+
+    def get_DICOMS(self):
+        counter = 0
+        print('Retrieving DICOM images. This may take a while.')
+        print('Please do not exit program.')
+        for obj in self.DICOM_ims_to_find:
+            counter = counter + 1
+            url = "http://hackathon.siim.org/dicom-web/studies/" + obj
+            headers = {
+            'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+            'Cache-Control': "no-cache",
+            'Postman-Token': "8d387369-2a8a-4d05-83b3-dbcc8def0ecf"
+            }
+            try:
+                response = requests.request("GET", url, headers=headers)
                 print(response.text)
-        
+            except:
+                print('Something went wrong getting DICOM image' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.')
 
+        # This should probably be forked in order to appear as though the GUI
+        # has not crashed. 
     def Get_DICOM_images(self):
-        print("Getting DICOM images...")
-
+        thread.Thread(target=self.get_DICOMS).start()
+        
     def __init__(self, top=None):
         #spacing variables
         leftMargin = 0.015
@@ -413,8 +476,8 @@ class New_Toplevel:
         self.style.map('.',background=
             [('selected', _compcolor), ('active',_ana2color)])
 
-        top.geometry("1333x826+415+167")
-        top.title("New Toplevel")
+        top.geometry("1600x800")
+        top.title("AI Ready Portal")
         top.configure(background="#d9d9d9")
 
         #self.root = Tk()
@@ -632,7 +695,7 @@ class New_Toplevel:
         self.Label2_8.configure(text='''/''')
 
         proc_search_var = StringVar()
-        proc_search_var.trace("w", lambda name, index, mode, proc_search_var=proc_search_var:New_Toplevel.Proc_Filter(self))
+        proc_search_var.trace("w", lambda name, index, mode, proc_search_var=proc_search_var:AI_Portal.Proc_Filter(self))
         self.Proc_search = Entry(self.Study_tab, textvariable=proc_search_var)
         self.Proc_search.place(relx=0.17, rely=0.19,height=26, relwidth=0.37)
         self.Proc_search.configure(background="white")
@@ -698,7 +761,7 @@ class New_Toplevel:
         self.Label5.configure(width=131)
         
         diag_search_var = StringVar()
-        diag_search_var.trace("w", lambda name, index, mode, diag_search_var=diag_search_var:New_Toplevel.Diag_Filter(self))
+        diag_search_var.trace("w", lambda name, index, mode, diag_search_var=diag_search_var:AI_Portal.Diag_Filter(self))
         self.Diag_search = Entry(self.Diagnosis_tab, textvariable=diag_search_var)
         self.Diag_search.place(relx=0.18, rely=0.31,height=26, relwidth=0.44)
         self.Diag_search.configure(background="white")
@@ -871,14 +934,14 @@ class New_Toplevel:
         self.Label3_10.configure(highlightcolor="black")
         self.Label3_10.configure(text='''Smoking History''')
 
-        self.procedure_button = Button(self.Study_tab, text='>', command=lambda: New_Toplevel.AddProc(self))
+        self.procedure_button = Button(self.Study_tab, text='>', command=lambda: AI_Portal.AddProc(self))
         self.procedure_button.place(relx=.55,rely=.5,height=30,width=30)
-        self.procedure_button_del = Button(self.Study_tab, text='<', command=lambda: New_Toplevel.DelProc(self))
+        self.procedure_button_del = Button(self.Study_tab, text='<', command=lambda: AI_Portal.DelProc(self))
         self.procedure_button_del.place(relx=.55,rely=.6,height=30,width=30)
         
-        self.diag_button = Button(self.Diagnosis_tab, text='>', command=lambda: New_Toplevel.AddDiag(self))
+        self.diag_button = Button(self.Diagnosis_tab, text='>', command=lambda: AI_Portal.AddDiag(self))
         self.diag_button.place(relx=.62,rely=.5,height=30,width=30)
-        self.diag_button_del = Button(self.Diagnosis_tab, text='<', command=lambda: New_Toplevel.DelDiag(self))
+        self.diag_button_del = Button(self.Diagnosis_tab, text='<', command=lambda: AI_Portal.DelDiag(self))
         self.diag_button_del.place(relx=.62,rely=.6,height=30,width=30)
         
         self.tNo39_t2_lab67 = Label(self.Patient_tab, anchor='w')
@@ -1174,10 +1237,10 @@ class New_Toplevel:
         self.download_instructions = Label(self.Download_tab, text = 'When you are satisfied with your selections, preview the data set and then sumbit the query')
         self.download_instructions.place(relx=0.15, rely=0.1, relheight=0.05, relwidth = 0.7)
 
-        self.preview_button = Button(self.Download_tab, text = 'Preview Query', command=lambda: New_Toplevel.Preview_dataset(self))
+        self.preview_button = Button(self.Download_tab, text = 'Preview Query', command=lambda: AI_Portal.Preview_dataset(self))
         self.preview_button.place(relx=0.25, rely=0.2, relheight=0.05, relwidth = 0.2)
 
-        self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command=lambda: New_Toplevel.Submit_query(self))
+        self.submit_query_button = Button(self.Download_tab, text = 'Submit Query', command=lambda: AI_Portal.Submit_query(self))
         self.submit_query_button.place(relx=0.25, rely=0.35, relheight=0.05, relwidth = 0.2)
 
         self.num_images_label = Label(self.Download_tab, anchor='w')
@@ -1201,7 +1264,7 @@ class New_Toplevel:
         self.alt_query_url = Entry(self.Download_tab)
         self.alt_query_url.place(relx=0.35, rely=0.5, height=labelHeight, relwidth = 0.4)
         
-        self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command=lambda: New_Toplevel.Get_DICOM_images(self))
+        self.get_dicom_button = Button(self.Download_tab, text = 'Get DICOM Images', command=lambda: AI_Portal.Get_DICOM_images(self))
         self.get_dicom_button.place(relx=0.25, rely=0.65, relheight=0.05, relwidth = 0.2)
 
 # The following code is added to facilitate the Scrolled widgets you specified.
