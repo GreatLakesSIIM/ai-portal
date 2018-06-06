@@ -402,14 +402,11 @@ class AI_Portal:
                         }
                         
                         try:
-                            print('DICOM')
                             #response = requests.request("GET", url, headers=headers)
                             #print(response.text)
                         except:
                             print('Something went wrong getting DICOM image' + str(counter) + ' of ' + str(len(id_list)) + '.')
 #                print(response.text)
-            for a in self.DICOM_ims_to_find:
-                print(a)
             self.DICOM_studies_found = len(id_list)
             foundMessage = 'Query found ' + str(len(id_list)) + ' related DICOM images.'
             print(foundMessage)
@@ -436,7 +433,7 @@ class AI_Portal:
         print('Please do not exit program.')
         for obj in self.DICOM_ims_to_find:
             counter = counter + 1
-            print('Getting image ' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.') 
+            print('Getting study ' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.') 
             url = "http://hackathon.siim.org/dicom-web/studies/" + obj
             headers = {
             'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
@@ -447,8 +444,8 @@ class AI_Portal:
                 response = requests.request("GET", url, headers=headers)
                 #print(response.text)
             except:
-                print('Something went wrong getting DICOM image' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.')
-
+                print('Something went wrong getting DICOM study' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.')
+        print('Done getting the DICOMS.')
         # This should probably be forked in order to appear as though the GUI
         # has not crashed. 
     def Get_DICOM_images(self): 
