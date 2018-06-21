@@ -121,11 +121,24 @@ class AI_Portal:
     
     # Add procedure code to playbook_incl list 
     def AddProc(self):
+        skip = False
         s = self.Procedure_box.curselection()
         g = self.Procedure_box.get(0,END)
+        existing = self.Procedure_box_selected.get(0,END)
         for i in s:
-            self.Procedure_box_selected.insert('end',g[i])
-            playbook_incl.append(playbook[g[i]])
+            if (existing):
+                for e in existing:
+                    if ((g[i] == e)):
+                        print(g[i] + ' already selected.')
+                        skip = True
+                if(not skip):
+                    self.Procedure_box_selected.insert('end',g[i])
+                    playbook_incl.append(playbook[g[i]]) 
+                skip = False
+            else:          
+                self.Procedure_box_selected.insert('end',g[i])
+                playbook_incl.append(playbook[g[i]])
+        print(playbook_incl)
 
     # Remove procedure code from playbook_incl list 
     def DelProc(self):
@@ -151,7 +164,6 @@ class AI_Portal:
         s = self.Diag_box.curselection()
         g = self.Diag_box.get(0,END)
         existing = self.Diag_box_selected.get(0,END)
-        print(existing)
         for i in s:
             if (existing):
                 for e in existing:
