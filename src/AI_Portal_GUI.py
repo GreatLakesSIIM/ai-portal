@@ -340,7 +340,7 @@ class AI_Portal:
             querystring = {"gender":sex}
 
             headers = {
-                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                'apikey': "",
                 'Cache-Control': "no-cache",
                 'Postman-Token': "689e0400-7249-4ca9-95d2-40cfdc764c3e",
                 'accept': "text/xml"
@@ -386,7 +386,7 @@ class AI_Portal:
             querystring = {"diagnosis":diag}
 
             headers = {
-                'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                'apikey': "",
                 'Cache-Control': "no-cache",
                 'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342",
                 'accept': "text/xml"
@@ -413,7 +413,7 @@ class AI_Portal:
             for ids in id_list:
                 url = "http://hackathon.siim.org/fhir/ImagingStudy/" + str(ids)
                 headers = {
-                    'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                    'apikey': "",
                     'Cache-Control': "no-cache",
                     'Postman-Token': "80321743-f572-4dff-a203-399e165fc887",
                     'accept': "text/xml"
@@ -433,7 +433,7 @@ class AI_Portal:
                         self.DICOM_ims_to_find.append(uid_arr[2])
                         url = "http://hackathon.siim.org/dicom-web/studies/" + uid_arr[2]
                         headers = {
-                        'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                        'apikey': "",
                         'Cache-Control': "no-cache",
                         'Postman-Token': "8d387369-2a8a-4d05-83b3-dbcc8def0ecf"
                         }
@@ -446,7 +446,7 @@ class AI_Portal:
         else:
             if(self.alt_query_url.get()):
                 headers = {
-                    'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+                    'apikey': "",
                     'Cache-Control': "no-cache",
                     'Postman-Token': "81271c96-c884-412d-ab15-cff1dca4e342"
                     }
@@ -466,7 +466,7 @@ class AI_Portal:
             print('Getting study ' + str(counter) + ' of ' + str(self.DICOM_studies_found) + '.') 
             url = "http://hackathon.siim.org/dicom-web/studies/" + obj
             headers = {
-            'apikey': "eee630b7-2669-4a56-843b-eb88b4dff02f",
+            'apikey': "",
             'Cache-Control': "no-cache",
             'Postman-Token': "8d387369-2a8a-4d05-83b3-dbcc8def0ecf"
             }
