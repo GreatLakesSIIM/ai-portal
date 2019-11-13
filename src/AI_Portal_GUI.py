@@ -515,21 +515,21 @@ class AI_Portal:
         # Make fullscreen
         top.attributes('-fullscreen',True)
         
-        with open('../lib/RADlex.csv', 'r') as csvfile:
+        with open('../ai-portal/lib/Radlex.csv', 'r') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
                 if row[0] != 'Name or Synonym':
                     RADLEX_lut.append(row[0])
                     RADLEX_lut_num.append(row[1])
                     #self.Procedure_box.insert('end', row[0])
-        with open('../lib/complete-playbook-2_5.csv', 'r') as csvfile:
+        with open('../ai-portal/lib/complete-playbook-2_5.csv', 'r') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
                 if row[0] != 'RPID':
                     playbook_lut.append(row[4])
                     playbook_lut_num.append(row[0])
 
-        with open('../lib/RADLEX_to_LOINC.csv','r') as csvfile:
+        with open('../ai-portal/lib/RADLEX_to_LOINC.csv','r') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
                 if row[0] != 'LoincNumber':
